@@ -1,37 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
 /* 
-    Created on : Mar 5, 2015, 2:28:17 PM
+    Created on : Mar 2, 2015, 10:36:31 AM
     Author     : Kyle
 */
 
-.mainPageDiv {
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    background: #222630;
-    margin: 0 auto;
-    width: 850px;
-}
-.logoImageDiv {
-    border-top: darkblue groove 20px;
-    border-bottom: darkslateblue ridge 20px;
-    border-left: darkblue groove 20px;
-    border-right: darkslateblue ridge 20px;
-}
-.logoImage {
-    width: 100%;
-    height: 100%;
-}
-.buttonDiv {
-    margin: 0 auto;
-    width: 25%;
-}
-.mainMenuButton {
-    position: fixed;
-    top: 5px;
-}
-.mainPageButtons {
-    width: 250px;
-    margin: 0 auto 5px auto;
-}
+
+/*Style borrowed from http://codepen.io/majci23/pen/ubavH*/
 .buttonDisign {
     font-size: 1.25em;
     text-transform: uppercase;
@@ -47,4 +25,121 @@
 .buttonDisign:hover {
     text-shadow: 0 0 .3em #f30;
     background: #222640;   
+}
+.buttonDiv {
+    margin: 0 auto;
+    width: 25%;
+}
+.createBoardPageDiv {
+    width: 1600px;
+}
+.createNewBoardLogoDiv {
+    width: 45%;
+    margin: 0 auto;
+    border-top: darkblue groove 20px;
+    border-bottom: darkslateblue ridge 20px;
+    border-left: darkblue groove 20px;
+    border-right: darkslateblue ridge 20px;
+}
+.formsDiv {
+    box-shadow: #222630 2px 2.5px 1px;
+    border: lightgray solid 1px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.margin20px {
+    margin-left: 20px !important;
+}
+.submitButton {
+    font-size: 1.25em;
+    text-transform: uppercase;
+    border-radius: .3em;
+    border: 0.1em solid black;
+    background: white;
+    color: black;
+    padding: 7.5px 5px;
+    cursor: pointer;
+}
+.submitButton:hover {
+    font-weight: bold;
+}
+.formTextField {
+    width: 125px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 0px 10px #fff, 0px 0px 0px 11px #ccc, 0px 2px 0px 11px #999;
+    border-radius: 2px;
+    color: black;
+    font-size: 15px;
+    padding: 5px 5px;
+    transition: all .25s linear;
+    margin: 5px 10px 25px 20px;
+}
+.formTextField:focus {
+    border: 1px solid rgba(0,144,255,.4);
+}
+.infoForms {
+    margin: 15px 5px 15px 15px;
+}
+.logoImageDiv {
+    border-top: darkblue groove 20px;
+    border-bottom: darkslateblue ridge 20px;
+    border-left: darkblue groove 20px;
+    border-right: darkslateblue ridge 20px;
+}
+.logoImage {
+    width: 100%;
+    height: 100%;
+}
+.newBoardForm {
+    width: 60%;
+    margin: 2.5% auto 0 auto;
+}
+.notSelectedTab {
+    border-top: lightgray solid 1px;
+    border-left: lightgray solid 1px;
+    border-right: lightgray solid 1px;
+}
+.mainMenuButton {
+    position: fixed;
+    top: 5px;
+}
+.mainPageButtons {
+    width: 250px;
+    margin: 0 auto 5px auto;
+}
+.mainPageDiv {
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background: #222630;
+    margin: 0 auto;
+    width: 850px;
+}
+.propertyHeader {
+    font-family:  'Open-Sans', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 0 25px;
+    width: 145px;
+    display: inline-block;
+}
+.propertyHeaderDiv {
+    margin-bottom: 25px;
+}
+.pointerCursor {
+    cursor: pointer;
+}
+.selectedTab {
+    font-weight: bold;
+    border-top: black solid 1px;
+    border-left: black solid 1px;
+    border-right: black solid 1px;
+}
+.tabSpan {
+    font-family: 'Open-Sans', serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin: 0 2px 0 0;
+    padding: 7.5px 6px 1px 6px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
 }
