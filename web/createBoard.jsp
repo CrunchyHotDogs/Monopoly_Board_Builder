@@ -10,6 +10,7 @@
     <head>
         <link rel="stylesheet" href="CSS/cssPage.css" type="text/css"/>
         <script src="Javascript/jquery-2.1.3.min.js"></script>
+        <script src="Javascript/Property.js"></script>
         <script src="Javascript/createBoard.js"></script>
         
         

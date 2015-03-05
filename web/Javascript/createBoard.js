@@ -76,6 +76,7 @@ function initializeElements() {
     });
     
     $('#propertyNextButton').click(function () {
+        retrievePropertyInfo();
         showNextTab('formChance', 'chanceTab');
     });
     $('#chanceNextButton').click(function () {
@@ -87,4 +88,58 @@ function initializeElements() {
     $('#imageNextButton').click(function () {
         showNextTab('formProperty', 'propertyTab');
     });
+}
+
+function retrievePropertyInfo() {
+    var properties = [];
+        
+    $('#formProperty').find('div.oneProperty').each(function (index, element) {
+        properties[index] = new Property();
+        
+        $(this).find('input').each(function (innerIndex, innerElement) {
+            switch (innerIndex) {
+                case 0:
+                    if ($(this).val() !== "") {
+                        properties[index].setName($(this).val());
+                    }
+                    else {
+                        properties[index].setName($(this).attr('placeholder'));
+                    }
+                    break;
+                case 1:
+                    var regex = new RegExp("^\d*[0-9](,\d*[0-9]){4}$");
+                    if ($(this).val() !== "" && regex.test($(this).val())) {
+                        properties[index].setTax($(this).val().split(',')); 
+                    }
+                    else {
+                        properties[index].setTax($(this).attr('placeholder').split(',')); 
+                    }
+                    break;
+                case 2:
+                    if ($(this).val() !== "" && $.isNumeric($(this).val())) {
+                        properties[index].setCost($(this).val());
+                    }
+                    else {
+                        properties[index].setCost($(this).attr('placeholder'));
+                    }
+                    break;
+                case 3:
+                    if ($(this).val() !== "" && $.isNumeric($(this).val())) {
+                        properties[index].setHouse($(this).val());
+                    }
+                    else {
+                        properties[index].setHouse($(this).attr('placeholder'));
+                    }
+                    break;
+                case 4:
+                    properties[index].setType($(this).attr('placeholder'));
+                    break;
+            }
+
+        });
+    });
+
+        for (var i = 0; i < properties.length; i++) {
+            console.log(properties[i].toJson());
+        }   
 }
