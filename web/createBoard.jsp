@@ -4,6 +4,23 @@
     Author     : Kyle
 --%>
 
+<%
+    //All the variables used for the placeholders.
+                            String propertyNames[] = {  "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue",
+                                                        "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance", "Vermont Avenue",
+                                                        "Connecticut Avenue", "Jail", "St. Charles Place", "Electric Company", "States Avenue",
+                                                        "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest",
+                                                        "Tennessee Avenue", "New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue",
+                                                        "Illinois Avenue", "B. & O. Railroad", "Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens",
+                                                        "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest", "Pennsylvania Avenue",
+                                                        "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"};
+                            
+                            String propertyTypes[] = {  "G", "P", "CC", "P", "IT", "RR", "P", "C", "P", "P", "J", "P", "U", "P", "P", "RR", "P",
+                                                        "CC", "P", "P", "FP", "P", "C", "P", "P", "RR", "P", "P", "U", "P", "GTJ", "P", "P", "CC",
+                                                        "P", "RR", "C", "P", "LT", "P"};
+%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +28,7 @@
         <link rel="stylesheet" href="CSS/cssPage.css" type="text/css"/>
         <script src="Javascript/jquery-2.1.3.min.js"></script>
         <script src="Javascript/Property.js"></script>
+        <script src="Javascript/Card.js"></script>
         <script src="Javascript/createBoard.js"></script>
         
         
@@ -67,20 +85,6 @@
                             </span>
                         </div>
                         <% 
-                            //All the variables used for the placeholders.
-                            String propertyNames[] = {  "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue",
-                                                        "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance", "Vermont Avenue",
-                                                        "Connecticut Avenue", "Jail", "St. Charles Place", "Electric Company", "States Avenue",
-                                                        "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest",
-                                                        "Tennessee Avenue", "New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue",
-                                                        "Illinois Avenue", "B. & O. Railroad", "Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens",
-                                                        "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest", "Pennsylvania Avenue",
-                                                        "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"};
-                            
-                            String propertyTypes[] = {  "G", "P", "CC", "P", "IT", "RR", "P", "C", "P", "P", "J", "P", "U", "P", "P", "RR", "P",
-                                                        "CC", "P", "P", "FP", "P", "C", "P", "P", "RR", "P", "P", "U", "P", "GTJ", "P", "P", "CC",
-                                                        "P", "RR", "C", "P", "LT", "P"};
-                            
                             for (int i = 0; i < propertyNames.length; i++) { 
                         %>
                         <div class="oneProperty">
@@ -100,10 +104,10 @@
                         <% 
                             for (int i = 0; i < 16; i++) {    
                         %>
-                        <div>
-                            <input id="chanceName<%=i%>" type="text" class="formTextField margin20px" />
-                            <input id="chanceLetter<%=i%>" type="text" class="formTextField margin20px" disabled="disabled" />
-                            <input id="chanceDesc<%=i%>" type="text" class="formTextField margin20px" />
+                        <div class="oneChanceCard">
+                            <input id="chanceName<%=i%>" type="text" class="formTextField margin20px" placeholder="testName" />
+                            <input id="chanceLetter<%=i%>" type="text" class="formTextField margin20px" placeholder="A" disabled="disabled" />
+                            <input id="chanceDesc<%=i%>" type="text" class="formTextField margin20px" placeholder="testDesc" />
                         </div>
                         <%
                             }
@@ -118,10 +122,10 @@
                         <% 
                             for (int i = 0; i < 18; i++) {    
                         %>
-                        <div>
-                            <input id="chestName<%=i%>" type="text" class="formTextField margin20px" />
-                            <input id="chestLetter<%=i%>" type="text" class="formTextField margin20px" disabled="disabled" />
-                            <input id="chestDesc<%=i%>" type="text" class="formTextField margin20px" />
+                        <div class="oneCommunityChest">
+                            <input id="chestName<%=i%>" type="text" class="formTextField margin20px" placeholder="testName" />
+                            <input id="chestLetter<%=i%>" type="text" class="formTextField margin20px" placeholder="A" disabled="disabled" />
+                            <input id="chestDesc<%=i%>" type="text" class="formTextField margin20px" placeholder="testDesc" />
                         </div>
                         <%
                             }

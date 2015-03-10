@@ -61,5 +61,5 @@ Property.prototype.toJson = function() {
     jsonObject.cost = this.cost;
     jsonObject.type = this.type;
 
-    return JSON.stringify(jsonObject);
+    return JSON.stringify(jsonObject, null, 4);
 };

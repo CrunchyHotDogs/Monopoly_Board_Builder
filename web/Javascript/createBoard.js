@@ -4,6 +4,11 @@
  */
 
 
+/*
+ * Global Variables
+ */
+var jsonObject = "{";
+
 $(document).ready(function () {
     showNextTab('formProperty', 'propertyTab');
      
@@ -80,12 +85,15 @@ function initializeElements() {
         showNextTab('formChance', 'chanceTab');
     });
     $('#chanceNextButton').click(function () {
+        retrieveChanceInfo();
         showNextTab('formCommunityChest', 'communityChestTab');
     });
     $('#communityChestNextButton').click(function () {
+        retrieveCommunityChestInfo();
         showNextTab('formImage', 'imageTab');
     });
     $('#imageNextButton').click(function () {
+        retrieveImage();
         showNextTab('formProperty', 'propertyTab');
     });
 }
@@ -135,7 +143,105 @@ function retrievePropertyInfo() {
                     properties[index].setType($(this).attr('placeholder'));
                     break;
             }
-
         });
     });
+    
+    jsonObject += "\"property\" : [";
+    
+    for (var i = 0; i < properties.length; i++) {
+        jsonObject += properties[i].toJson();
+        if (i !== (properties.length - 1)) {
+            jsonObject += ",";
+        }
+    }
+    jsonObject += "],";
+}
+
+function retrieveChanceInfo() {
+    var chanceCards = [];
+    
+    $('#formChance').find('div.oneChanceCard').each(function (index, element) {
+        chanceCards[index] = new Card();
+        
+        $(this).find('input').each(function (innerIndex, innerElement) {
+            switch (innerIndex) {
+                case 0:
+                    if ($(this).val() !== "") {
+                        chanceCards[index].setName($(this).val());
+                    }
+                    else {
+                        chanceCards[index].setName($(this).attr('placeholder'));
+                    }
+                    break;
+                case 1:
+                    chanceCards[index].setType($(this).attr('placeholder'));
+                    break;
+                case 2:
+                    if ($(this).val() !== "") {
+                        chanceCards[index].setDescription($(this).val());
+                    }
+                    else {
+                        chanceCards[index].setDescription($(this).attr('placeholder'));
+                    }
+                    break;
+            }
+        });
+    });
+    
+    jsonObject += "\"chanceCard\" : [";
+    
+    for (var i = 0; i < chanceCards.length; i++) {
+        jsonObject += chanceCards[i].toJson();
+        if (i !== (chanceCards.length - 1)) {
+            jsonObject += ",";
+        }
+    }
+    jsonObject += "],";
+}
+
+function retrieveCommunityChestInfo() {
+    var communityChest = [];
+    
+    $('#formCommunityChest').find('div.oneCommunityChest').each(function (index, element) {
+        communityChest[index] = new Card();
+        
+        $(this).find('input').each(function (innerIndex, innerElement) {
+            switch (innerIndex) {
+                case 0:
+                    if ($(this).val() !== "") {
+                        communityChest[index].setName($(this).val());
+                    }
+                    else {
+                        communityChest[index].setName($(this).attr('placeholder'));
+                    }
+                    break;
+                case 1:
+                    communityChest[index].setType($(this).attr('placeholder'));
+                    break;
+                case 2:
+                    if ($(this).val() !== "") {
+                        communityChest[index].setDescription($(this).val());
+                    }
+                    else {
+                        communityChest[index].setDescription($(this).attr('placeholder'));
+                    }
+                    break;
+            }
+        });
+    });
+    
+    jsonObject += "\"communityChest\" : [";
+    
+    for (var i = 0; i < communityChest.length; i++) {
+        jsonObject += communityChest[i].toJson();
+        if (i !== (communityChest.length - 1)) {
+            jsonObject += ",";
+        }
+    }
+    jsonObject += "]";
+    console.log(jsonObject + "}");
+}
+
+function retrieveImage() {
+    
 }
