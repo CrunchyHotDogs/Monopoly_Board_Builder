@@ -1,3 +1,8 @@
+/*
+ * @author Kyle Crossman
+ * @file Property.js
+ */
+
 function Property() {
     this.name;
     this.tax;
@@ -33,7 +38,7 @@ Property.prototype.getName = function() {
 
 Property.prototype.getTax = function() {
     return this.tax;
-}
+};
 
 Property.prototype.getHouse = function() {
     return this.house;

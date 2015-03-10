@@ -138,8 +138,4 @@ function retrievePropertyInfo() {
 
         });
     });
-
-        for (var i = 0; i < properties.length; i++) {
-            console.log(properties[i].toJson());
-        }   
 }
