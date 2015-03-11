@@ -4,9 +4,51 @@
     Author     : Kyle
 --%>
 
+<%@page import="boardObjects.Property"%>
 <%
     //All the variables used for the placeholders.
-                            String propertyNames[] = {  "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue",
+    Property properties[] = {   new Property("Go",new int[]{-200,-200,-200,-200,-200,-200},0,0,"G"),
+                                new Property("Mediterranean Avenue", new int[]{2,10,30,90,160,250},60,50,"P"),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
+                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, "")};
+                            
+    String propertyNames[] = {  "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue",
                                                         "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance", "Vermont Avenue",
                                                         "Connecticut Avenue", "Jail", "St. Charles Place", "Electric Company", "States Avenue",
                                                         "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest",
@@ -15,7 +57,7 @@
                                                         "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest", "Pennsylvania Avenue",
                                                         "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"};
                             
-                            String propertyTypes[] = {  "G", "P", "CC", "P", "IT", "RR", "P", "C", "P", "P", "J", "P", "U", "P", "P", "RR", "P",
+    String propertyTypes[] = {  "G", "P", "CC", "P", "IT", "RR", "P", "C", "P", "P", "J", "P", "U", "P", "P", "RR", "P",
                                                         "CC", "P", "P", "FP", "P", "C", "P", "P", "RR", "P", "P", "U", "P", "GTJ", "P", "P", "CC",
                                                         "P", "RR", "C", "P", "LT", "P"};
 %>
@@ -85,14 +127,14 @@
                             </span>
                         </div>
                         <% 
-                            for (int i = 0; i < propertyNames.length; i++) { 
+                            for (int i = 0; i < properties.length; i++) { 
                         %>
                         <div class="oneProperty">
-                            <input id="propertyName<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=propertyNames[i]%>" />
-                            <input id="propertyTax<%=i%>" type="text" class="formTextField margin20px" placeholder="10,25,50,100,200" />
-                            <input id="propertyPrice<%=i%>" type="text" class="formTextField margin20px" placeholder="250" />
-                            <input id="propertyHouse<%=i%>" type="text" class="formTextField margin20px" placeholder="50" />
-                            <input id="propertyType<%=i%>" type="text" class="formTextField margin20px" disabled="disabled" placeholder="<%=propertyTypes[i]%>" />
+                            <input id="propertyName<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getName()%>" />
+                            <input id="propertyTax<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getTaxString()%>" />
+                            <input id="propertyPrice<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getCost()%>" />
+                            <input id="propertyHouse<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getHouse()%>" />
+                            <input id="propertyType<%=i%>" type="text" class="formTextField margin20px" disabled="disabled" placeholder="<%=properties[i].getType()%>" />
                             <button>Map</button>
                         </div>
                         <% } %>

@@ -58,4 +58,16 @@ public class Property {
     public void setType(String type) {
         this.type = type;
     }
+    
+    public String getTaxString() {
+        String taxString = "";
+        
+        for (int i = 0; i < this.tax.length; i++) {
+            taxString += this.tax[i];
+            if (i != this.tax.length - 1) {
+                taxString += ",";
+            }
+        }
+        return taxString;
+    }
 }
