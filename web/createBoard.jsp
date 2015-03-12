@@ -7,59 +7,46 @@
 <%@page import="boardObjects.Property"%>
 <%
     //All the variables used for the placeholders.
-    Property properties[] = {   new Property("Go",new int[]{-200,-200,-200,-200,-200,-200},0,0,"G"),
+    Property properties[] = {   new Property("Go", new int[]{-200,-200,-200,-200,-200,-200}, 0, 0, "G"),
                                 new Property("Mediterranean Avenue", new int[]{2,10,30,90,160,250},60,50,"P"),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, ""),
-                                new Property("", new int[]{0,0,0,0,0,0}, 0, 0, "")};
-                            
-    String propertyNames[] = {  "Go", "Mediterranean Avenue", "Community Chest", "Baltic Avenue",
-                                                        "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance", "Vermont Avenue",
-                                                        "Connecticut Avenue", "Jail", "St. Charles Place", "Electric Company", "States Avenue",
-                                                        "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest",
-                                                        "Tennessee Avenue", "New York Avenue", "Free Parking", "Kentucky Avenue", "Chance", "Indiana Avenue",
-                                                        "Illinois Avenue", "B. & O. Railroad", "Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens",
-                                                        "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest", "Pennsylvania Avenue",
-                                                        "Short Line", "Chance", "Park Place", "Luxury Tax", "Boardwalk"};
-                            
-    String propertyTypes[] = {  "G", "P", "CC", "P", "IT", "RR", "P", "C", "P", "P", "J", "P", "U", "P", "P", "RR", "P",
-                                                        "CC", "P", "P", "FP", "P", "C", "P", "P", "RR", "P", "P", "U", "P", "GTJ", "P", "P", "CC",
-                                                        "P", "RR", "C", "P", "LT", "P"};
+                                new Property("Community Chest", new int[]{0,0,0,0,0,0}, 0, 0, "CC"),
+                                new Property("Baltic Avenue", new int[]{4,20,60,180,320,450}, 60, 50, ""),
+                                new Property("Income Tax", new int[]{0,0,0,0,0,0}, 200, 0, "IT"),
+                                new Property("Reading Railroad", new int[]{25,25,25,25,25,25}, 200, 0, "RR"),
+                                new Property("Oriental Avenue", new int[]{6,30,90,270,400,550}, 100, 50, "P"),
+                                new Property("Chance", new int[]{0,0,0,0,0,0}, 0, 0, "C"),
+                                new Property("Vermont Avenue", new int[]{6,30,90,270,400,550}, 100, 50, "P"),
+                                new Property("Connecticut Avenue", new int[]{8,40,100,300,450,600}, 120, 50, "P"),
+                                new Property("Jail", new int[]{0,0,0,0,0,0}, 0, 0, "J"),
+                                new Property("St. Charles Place", new int[]{10,50,150,450,625,750}, 140, 100, "P"),
+                                new Property("Electric Company", new int[]{0,0,0,0,0,0}, 150, 0, "U"),
+                                new Property("States Avenue", new int[]{10,50,150,450,625,750}, 140, 100, "P"),
+                                new Property("Virginia Avenue", new int[]{12,60,180,500,700,900}, 160, 100, "P"),
+                                new Property("Pennsylvania Railroad", new int[]{25,25,25,25,25,25}, 200, 0, "RR"),
+                                new Property("St. James Place", new int[]{14,70,200,550,750,950}, 180, 100, "P"),
+                                new Property("Community Chest", new int[]{0,0,0,0,0,0}, 0, 0, "CC"),
+                                new Property("Tennessee Avenue", new int[]{14,70,200,550,750,950}, 180, 100, "P"),
+                                new Property("New York Avenue", new int[]{16,80,220,600,800,1000}, 200, 100, "P"),
+                                new Property("Free Parking", new int[]{0,0,0,0,0,0}, 0, 0, "FP"),
+                                new Property("Kentucky Avenue", new int[]{16,90,250,700,875,1050}, 220, 150, "P"),
+                                new Property("Chance", new int[]{0,0,0,0,0,0}, 0, 0, "C"),
+                                new Property("Indiana Avenue", new int[]{18,90,250,700,875,1050}, 220, 150, "P"),
+                                new Property("Illinois Avenue", new int[]{20,100,300,750,925,1100}, 240, 150, "P"),
+                                new Property("B. & O. Railroad", new int[]{25,25,25,25,25,25}, 200, 0, "RR"),
+                                new Property("Atlantic Avenue", new int[]{22,110,330,800,975,1150}, 260, 150, "P"),
+                                new Property("Ventnor Avenue", new int[]{22,110,330,800,975,1150}, 260, 150, "P"),
+                                new Property("Water Works", new int[]{0,0,0,0,0,0}, 150, 0, "U"),
+                                new Property("Marvin Gardens", new int[]{24,120,360,850,1025,1200}, 280, 150, "P"),
+                                new Property("Go To Jail", new int[]{0,0,0,0,0,0}, 0, 0, "GTJ"),
+                                new Property("Pacific Avenue", new int[]{26,130,390,900,1100,1275}, 300, 200, "P"),
+                                new Property("North Carolina Avenue", new int[]{26,130,390,900,1100,1275}, 300, 200, "P"),
+                                new Property("Community Chest", new int[]{0,0,0,0,0,0}, 0, 0, "CC"),
+                                new Property("Pennsylvania Avenue", new int[]{28,150,450,1000,1200,1400}, 320, 200, "P"),
+                                new Property("Short Line", new int[]{25,25,25,25,25,25}, 200, 0, "RR"),
+                                new Property("Chance", new int[]{0,0,0,0,0,0}, 0, 0, "C"),
+                                new Property("Park Place", new int[]{35,175,500,1100,1300,1500}, 350, 200, "P"),
+                                new Property("Luxury Tax", new int[]{0,0,0,0,0,0}, 100, 0, "LT"),
+                                new Property("Boardwalk", new int[]{50,200,600,1400,1700,2000}, 400, 200, "P")};
 %>
 
 
@@ -95,33 +82,27 @@
                 <div id="forms" class="formsDiv">
                     <div id="formProperty" class="infoForms">
                         <div class="propertyHeaderDiv">
-                            <span class="propertyHeader">
+                            <span class="propertyHeader largeHeader">
                                 Name  
                                 <span class="pointerCursor" title="The name that will show up when the property is landed on in the game.">
                                     &ofcir;
                                 </span>
                             </span>
-                            <span class="propertyHeader">
+                            <span class="propertyHeader largeHeader">
                                 Tax  
-                                <span class="pointerCursor" title="The amount that is required to be payed when another player lands on your property. Enter five numbers (used for tax when you have houses) seperated by commas.">
+                                <span class="pointerCursor" title="The amount that is required to be payed when another player lands on your property. Enter six numbers (used for tax when you have houses) seperated by commas.">
                                     &ofcir;
                                 </span>
                             </span>
-                            <span class="propertyHeader">
+                            <span class="propertyHeader smallHeader">
                                 Cost  
                                 <span class="pointerCursor" title="The cost that the property will be in order to buy it.">
                                     &ofcir;
                                 </span>
                             </span>
-                            <span class="propertyHeader">
+                            <span class="propertyHeader smallHeader">
                                 House  
                                 <span class="pointerCursor" title="The cost that each house on this property will be.">
-                                    &ofcir;
-                                </span>
-                            </span>
-                            <span class="propertyHeader">
-                                Type
-                                <span class="pointerCursor" title="The type of property.&#013;P = Property&#013;RR = Railroad&#013;J = Jail&#013;GOT = Go To Jail&#013;G = Go&#013;C = Chance&#013;CC = Community Chest&#013;U = Utility&#013;LT = Luxury Tax&#013;IT = Income Tax&#013;FP = Free Parking">
                                     &ofcir;
                                 </span>
                             </span>
@@ -130,12 +111,12 @@
                             for (int i = 0; i < properties.length; i++) { 
                         %>
                         <div class="oneProperty">
-                            <input id="propertyName<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getName()%>" />
-                            <input id="propertyTax<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getTaxString()%>" />
-                            <input id="propertyPrice<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getCost()%>" />
-                            <input id="propertyHouse<%=i%>" type="text" class="formTextField margin20px" placeholder="<%=properties[i].getHouse()%>" />
-                            <input id="propertyType<%=i%>" type="text" class="formTextField margin20px" disabled="disabled" placeholder="<%=properties[i].getType()%>" />
-                            <button>Map</button>
+                            <input id="propertyName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=properties[i].getName()%>" />
+                            <input id="propertyTax<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=properties[i].getTaxString()%>" />
+                            <input id="propertyPrice<%=i%>" type="text" class="formTextField smallFormTextField margin20px" placeholder="<%=properties[i].getCost()%>" />
+                            <input id="propertyHouse<%=i%>" type="text" class="formTextField smallFormTextField margin20px" placeholder="<%=properties[i].getHouse()%>" />
+                            <input id="propertyType<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=properties[i].getType()%>" />
+                            <button class="submitButton mapButton">Map</button>
                         </div>
                         <% } %>
                     
