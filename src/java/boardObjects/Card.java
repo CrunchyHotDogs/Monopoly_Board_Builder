@@ -9,6 +9,12 @@ public class Card {
     private String description;
     private String type;
     
+    public Card() {
+        this.name = "";
+        this.description = "";
+        this.type = "";
+    }
+    
     public Card(String name, String description, String type) {
         this.name = name;
         this.description = description;

@@ -11,6 +11,14 @@ public class Property {
     private int cost;
     private String type;
     
+    public Property() {
+        this.name = "";
+        this.tax = new int[]{0};
+        this.house = 0;
+        this.cost = 0;
+        this.type = "";
+    }
+    
     public Property(String name, int[] tax, int house, int cost, String type) {
         this.name = name;
         this.tax = tax;
