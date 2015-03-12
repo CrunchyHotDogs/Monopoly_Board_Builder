@@ -39,5 +39,5 @@ Card.prototype.toJson = function() {
     jsonObject.description = this.description;
     jsonObject.type = this.type;
 
-    return JSON.stringify(jsonObject, null, 4);
+    return JSON.stringify(jsonObject);
 };
