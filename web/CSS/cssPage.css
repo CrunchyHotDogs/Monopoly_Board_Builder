@@ -148,14 +148,15 @@ and open the template in the editor.
     margin: 0 0 0 25px;
     display: inline-block;
 }
-div.upload {
+.upload {
     width: 157px;
     height: 57px;
-    background-image: "Images/upload.png";
+    background-image: url("../Images/upload.png");
     overflow: hidden;
+    cursor: pointer;
 }
-
-div.upload input {
+.upload input {
+    cursor: pointer;
     display: block !important;
     width: 157px !important;
     height: 57px !important;

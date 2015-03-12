@@ -200,7 +200,7 @@
                             </span>
                         </div>
                         
-                        <div class="upload">
+                        <div class="upload margin20px">
                             <input id="myFile" type="file" accept=".jpg" />
                         </div>
                         
