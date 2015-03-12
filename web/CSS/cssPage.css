@@ -75,6 +75,22 @@ and open the template in the editor.
 .largeFormTextField {
     width: 200px;
 }
+.veryLargeFormTextField {
+    width: 500px;
+}
+.cardInfo {
+    font-size: 1em;
+    text-transform: uppercase;
+    border-radius: .3em;
+    border: 0.15em solid black;
+    background: white;
+    color: black;
+    padding: 7.5px 5px;
+    cursor: pointer; 
+}
+.cardInfo:hover {
+    font-weight: bold;
+}
 .formTextField {
     border: 1px solid #ccc;
     box-shadow: 0px 0px 0px 10px #fff, 0px 0px 0px 11px #ccc, 0px 2px 0px 11px #999;
@@ -132,7 +148,21 @@ and open the template in the editor.
     margin: 0 0 0 25px;
     display: inline-block;
 }
-.propertyHeaderDiv {
+div.upload {
+    width: 157px;
+    height: 57px;
+    background-image: "Images/upload.png";
+    overflow: hidden;
+}
+
+div.upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+.headerDiv {
     margin-bottom: 25px;
 }
 .pointerCursor {

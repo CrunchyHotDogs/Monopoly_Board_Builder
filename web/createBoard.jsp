@@ -81,7 +81,7 @@
                 
                 <div id="forms" class="formsDiv">
                     <div id="formProperty" class="infoForms">
-                        <div class="propertyHeaderDiv">
+                        <div class="headerDiv">
                             <span class="propertyHeader largeHeader">
                                 Name  
                                 <span class="pointerCursor" title="The name that will show up when the property is landed on in the game.">
@@ -124,13 +124,29 @@
                     </div>
                     
                     <div id="formChance" class="infoForms">
+                        <div class="headerDiv">
+                            <span class="propertyHeader largeHeader">
+                                Name  
+                                <span class="pointerCursor" title="The name that will show up when the chance card is drawn.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                            <span class="propertyHeader">
+                                Description  
+                                <span class="pointerCursor" title="A description of what will happen when the card is drawn. You may use '[PLAYER_NAME]' to display the current turn's player name. You may use '[DESCRIPTION]' to display the name of the card.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                        </div>
+                        
                         <% 
                             for (int i = 0; i < 16; i++) {    
                         %>
                         <div class="oneChanceCard">
-                            <input id="chanceName<%=i%>" type="text" class="formTextField margin20px" placeholder="testName" />
-                            <input id="chanceLetter<%=i%>" type="text" class="formTextField margin20px" placeholder="A" disabled="disabled" />
-                            <input id="chanceDesc<%=i%>" type="text" class="formTextField margin20px" placeholder="testDesc" />
+                            <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="testName" />
+                            <input id="chanceLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="A" disabled="disabled" />
+                            <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="testDesc" />
+                            <button class="cardInfo">What Happens</button>
                         </div>
                         <%
                             }
@@ -142,13 +158,29 @@
                         
                         
                     <div id="formCommunityChest" class="infoForms">
+                        <div class="headerDiv">
+                            <span class="propertyHeader largeHeader">
+                                Name  
+                                <span class="pointerCursor" title="The name that will show up when the community chest card is drawn.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                            <span class="propertyHeader">
+                                Description  
+                                <span class="pointerCursor" title="A description of what will happen when the card is drawn. You may use '[PLAYER_NAME]' to display the current turn's player name. You may use '[DESCRIPTION]' to display the name of the card.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                        </div>
+                        
                         <% 
                             for (int i = 0; i < 18; i++) {    
                         %>
                         <div class="oneCommunityChest">
-                            <input id="chestName<%=i%>" type="text" class="formTextField margin20px" placeholder="testName" />
-                            <input id="chestLetter<%=i%>" type="text" class="formTextField margin20px" placeholder="A" disabled="disabled" />
-                            <input id="chestDesc<%=i%>" type="text" class="formTextField margin20px" placeholder="testDesc" />
+                            <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="testName" />
+                            <input id="chestLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="A" disabled="disabled" />
+                            <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="testDesc" />
+                            <button class="cardInfo">What Happens</button>
                         </div>
                         <%
                             }
@@ -159,7 +191,18 @@
                     
               
                     <div id="formImage" class="infoForms">
-                        <input id="myFile" type="file" accept=".jpg" />
+                        <div class="headerDiv">
+                            <span class="propertyHeader">
+                                Game Board Image
+                                <span class="pointerCursor" title="The image that will be used as the game board. The image must be 850x850px and jpg/jpeg format.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                        </div>
+                        
+                        <div class="upload">
+                            <input id="myFile" type="file" accept=".jpg" />
+                        </div>
                         
                         <button id="imageNextButton" class="submitButton margin20px">Submit</button>
                     </div>

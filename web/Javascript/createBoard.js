@@ -63,6 +63,8 @@ function showNextTab(nextForm, nextTab) {
     $('#' + nextForm).show();
     $('#' + nextTab).removeClass("notSelectedTab");
     $('#' + nextTab).addClass("selectedTab");
+    
+    window.scrollTo(0, 0);
 }
 
 function initializeElements() {
