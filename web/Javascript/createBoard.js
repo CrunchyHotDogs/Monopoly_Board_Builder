@@ -36,12 +36,11 @@ function readImage(file) {
             }
             
             if (errorMessage.length > 0) {
-                $('#imageNextButton').prop('disabled', true);
+                //$('#imageNextButton').prop('disabled', true);
                 alert(errorMessage);
             }
             else {
-                $('#imageNextButton').prop('disabled', false);
-                alert("Image is good.");
+                //$('#imageNextButton').prop('disabled', false);
             }
         };
         image.onerror = function() {
@@ -98,6 +97,10 @@ function initializeElements() {
         retrieveImage();
         showNextTab('formProperty', 'propertyTab');
     });
+    
+    $('#imageDialog').dialog({
+        autoOpen: false
+    });
 }
 
 function retrievePropertyInfo() {
@@ -117,7 +120,7 @@ function retrievePropertyInfo() {
                     }
                     break;
                 case 1:
-                    var regex = new RegExp("^\d*[0-9](,\d*[0-9]){4}$");
+                    var regex = new RegExp("^\d*[0-9](,\d*[0-9]){5}$");
                     if ($(this).val() !== "" && regex.test($(this).val())) {
                         properties[index].setTax($(this).val().split(',')); 
                     }
@@ -245,5 +248,5 @@ function retrieveCommunityChestInfo() {
 }
 
 function retrieveImage() {
-    
+    console.log($('#myFile').val());
 }

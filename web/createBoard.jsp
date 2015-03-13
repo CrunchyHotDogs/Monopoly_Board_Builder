@@ -59,12 +59,19 @@
         <script src="Javascript/Property.js"></script>
         <script src="Javascript/Card.js"></script>
         <script src="Javascript/createBoard.js"></script>
-        
+        <link rel="stylesheet" href="Javascript/jquery-ui-1.11.4/jquery-ui.css" type="text/" />
+        <script src="Javascript/jquery-ui-1.11.4/jquery-ui.js"></script>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Build Board</title>
     </head>
     <body>
+        <div id="imageDialog" class="hidden">
+            <canvas>
+                
+            </canvas>
+        </div>
+        
         <div class="createBoardPageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
             <div class="createNewBoardLogoDiv">
