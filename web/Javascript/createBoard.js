@@ -37,7 +37,8 @@ function readImage(file) {
             
             if (errorMessage.length > 0) {
                 //$('#imageNextButton').prop('disabled', true);
-                alert(errorMessage);
+                
+                $('#cardDescDialog').dialog('open');
             }
             else {
                 //$('#imageNextButton').prop('disabled', false);
@@ -99,6 +100,12 @@ function initializeElements() {
     });
     
     $('#imageDialog').dialog({
+        autoOpen: false
+    });
+    $('#imageUploadDialog').dialog({
+        autoOpen: false
+    });
+    $('#cardDescDialog').dialog({
         autoOpen: false
     });
 }

@@ -4,6 +4,7 @@
     Author     : Kyle
 --%>
 
+<%@page import="boardObjects.Card"%>
 <%@page import="boardObjects.Property"%>
 <%
     //All the variables used for the placeholders.
@@ -47,6 +48,41 @@
                                 new Property("Park Place", new int[]{35,175,500,1100,1300,1500}, 350, 200, "P"),
                                 new Property("Luxury Tax", new int[]{0,0,0,0,0,0}, 100, 0, "LT"),
                                 new Property("Boardwalk", new int[]{50,200,600,1400,1700,2000}, 400, 200, "P")};
+
+    Card chanceCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A"),
+                            new Card("Advance To Illinois Ave.", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to Illinois Ave. Receive $200 if you pass go.", "B"),
+                            new Card("Advance To St. Charles Place", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to St. Charles Place. Receive $200 if you pass go.", "C"),
+                            new Card("Advance To Nearest Utility", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Utility. You may buy the property if unowned, else pay the owner 10x your roll.", "D"),
+                            new Card("Advance To Nearest Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Railroad.", "E"),
+                            new Card("Bank Pays You Dividend", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $50 from the bank.", "F"),
+                            new Card("Get Out of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] can now escape from jail.", "G"),
+                            new Card("Go Back 3 Spaces", "[DESCRIPTION]<br/>[PLAYER_NAME] must move back 3 spaces. Sorry!", "H"),
+                            new Card("Go To Jail", "[DESCRIPTION]<br/>[PLAYER_NAME] goes directly to jail, no go money.", "I"),
+                            new Card("Make General Repairs On Your Property", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $25 per house, $100 for each hotel.", "J"),
+                            new Card("Pay Poor Tax", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $15 tax.", "K"),
+                            new Card("Take A Trip To Reading Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $200 if they pass go. Toot toot!", "L"),
+                            new Card("Take A Walk On Broadwalk", "[DESCRIPTION]<br/>[PLAYER_NAME] takes a walk on Broadwalk, better hope no one lives here!", "M"),
+                            new Card("You Have Been Elected Chairman of the Board", "[DESCRIPTION]<br/>[PLAYER_NAME] pays each player $50.", "N"),
+                            new Card("Your Building Loan Matures", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $150.", "O"),
+                            new Card("You Have Won A Crossword Competition", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $100.", "P")};
+
+    Card communityChestCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A"),
+                                    new Card("Bank Error In Your Favor", "[DESCRIPTION]<br/>A bank error has occured in your favor! Collect $200, [PLAYER_NAME].", "B"),
+                                    new Card("Doctor's Fee", "[DESCRIPTION]<br/>Oh no! You have to pay a doctor's fee! Pay the doctor $50, [PLAYER_NAME].", "C"),
+                                    new Card("From Sale of Stock", "[DESCRIPTION]<br/>Gain $50, [PLAYER_NAME].", "D"),
+                                    new Card("Get Out Of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] has received a get out of jail free card! WOO!", "E"),
+                                    new Card("Go To Jail", "[DESCRIPTION]<br/>Head right on over to the jail!", "F"),
+                                    new Card("Grand Opera Night", "[DESCRIPTION]<br/>Every player must purchase tickets. Each player must pay [PLAYER_NAME] $50.", "G"),
+                                    new Card("Holiday Fund Matures", "[DESCRIPTION]<br/>Holiday fund time, cheers! Receive $100, [PLAYER_NAME].", "H"),
+                                    new Card("Income Tax Refund", "[DESCRIPTION]<br/>Income tax refund. Receive $20, [PLAYER_NAME].", "I"),
+                                    new Card("It Is Your Birthday", "[DESCRIPTION]<br/>Happy birthday, [PLAYER_NAME]! Receive $10 from each player.", "J"),
+                                    new Card("Life Insurance Matures", "[DESCRIPTION]<br/>Your life insurance has matured. Receive $100, [PLAYER_NAME].", "K"),
+                                    new Card("Pay Hospital Fees", "[DESCRIPTION]<br/>Looks like someone had an accident. Pay $100, [PLAYER_NAME].", "L"),
+                                    new Card("Pay School Fees", "[DESCRIPTION]<br/>Education is very important. Pay $150, [PLAYER_NAME].", "M"),
+                                    new Card("Receives Consultancy Fee", "[DESCRIPTION]<br/>Receive $25, [PLAYER_NAME].", "N"),
+                                    new Card("You Are Assessed For Street Repairs", "[DESCRIPTION]<br/>Street repair time, [PLAYER_NAME]. $25 per house, $115 per hotel.", "O"),
+                                    new Card("You Have Won Second Prize In A Beauty Contest", "[DESCRIPTION]<br/>Only second place? [PLAYER_NAME] receives $10 for trying.", "P"),
+                                    new Card("You Inherit Money", "[DESCRIPTION]<br/>[PLAYER_NAME] inherits $100.", "Q")};
 %>
 
 
@@ -70,6 +106,12 @@
             <canvas>
                 
             </canvas>
+        </div>
+        <div id="imageUploadDialog" class="hidden">
+            <p id=""></p>
+        </div>
+        <div id="cardDescDialog" class="hidden">
+            
         </div>
         
         <div class="createBoardPageDiv">
@@ -147,12 +189,12 @@
                         </div>
                         
                         <% 
-                            for (int i = 0; i < 16; i++) {    
+                            for (int i = 0; i < chanceCards.length; i++) {    
                         %>
                         <div class="oneChanceCard">
-                            <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="testName" />
-                            <input id="chanceLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="A" disabled="disabled" />
-                            <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="testDesc" />
+                            <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=chanceCards[i].getName()%>" />
+                            <input id="chanceLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=chanceCards[i].getType()%>" disabled="disabled" />
+                            <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="<%=chanceCards[i].getDescription()%>" />
                             <button class="cardInfo">What Happens</button>
                         </div>
                         <%
@@ -181,12 +223,12 @@
                         </div>
                         
                         <% 
-                            for (int i = 0; i < 18; i++) {    
+                            for (int i = 0; i < communityChestCards.length; i++) {    
                         %>
                         <div class="oneCommunityChest">
-                            <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="testName" />
-                            <input id="chestLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="A" disabled="disabled" />
-                            <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="testDesc" />
+                            <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=communityChestCards[i].getName()%>" />
+                            <input id="chestLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=communityChestCards[i].getType()%>" disabled="disabled" />
+                            <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" title="<%=communityChestCards[i].getDescription()%>" placeholder="<%=communityChestCards[i].getDescription()%>" />
                             <button class="cardInfo">What Happens</button>
                         </div>
                         <%
