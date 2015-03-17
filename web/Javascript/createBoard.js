@@ -281,11 +281,18 @@ function retrieveCommunityChestInfo() {
             jsonObject += ",";
         }
     }
-    jsonObject += "]";
-    //console.log(jsonObject + "}");
+    jsonObject += "],";
 }
 
 function retrieveImage() {
+    var board = new Board();
+    board.setName("Fake Board");
+    board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg");
+    
+    jsonObject += "\"board\" : [";
+    jsonObject += board.toJson();
+    jsonObject += "]}";
+    
     /*var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
     var formData = new FormData();

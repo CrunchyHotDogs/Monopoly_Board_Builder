@@ -94,6 +94,7 @@
         <script src="Javascript/jquery-2.1.3.min.js"></script>
         <script src="Javascript/Property.js"></script>
         <script src="Javascript/Card.js"></script>
+        <script src="Javascript/Board.js"></script>
         <script src="Javascript/createBoard.js"></script>
         <link rel="stylesheet" href="Javascript/jquery-ui-1.11.4/jquery-ui.css" type="text/" />
         <script src="Javascript/jquery-ui-1.11.4/jquery-ui.js"></script>
