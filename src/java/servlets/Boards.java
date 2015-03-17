@@ -44,7 +44,7 @@ public class Boards {
         //Insert Board Into Database
         try (Connection conn = credentials.Credentials.getConnection()) {
             //Insert Board Into Database
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO board (board_name, image_url) VALUES ('?','?');",
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO board (board_name, image_url) VALUES (?, ?);",
                                                             Statement.RETURN_GENERATED_KEYS);
             
             pstmt.setString(1, boardInfo.getJsonObject(0).getString("name"));
@@ -65,20 +65,64 @@ public class Boards {
                 for (int i = 0; i < properties.size(); i++) {
                     JsonObject objects = properties.getJsonObject(i);
                     String name = objects.getString("name");
+                    String tax = objects.getString("tax");
                     int house = Integer.parseInt(objects.getString("house"));
                     int cost = Integer.parseInt(objects.getString("cost"));
                     String type = objects.getString("type");
+                    
+                    pstmt = conn.prepareStatement("INSERT INTO property (property_id, name, tax, house_cost, cost, type, board_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+
+                    pstmt.setInt(1, i);
+                    pstmt.setString(2, name);
+                    pstmt.setString(3, tax);
+                    pstmt.setInt(4, house);
+                    pstmt.setInt(5, cost);
+                    pstmt.setString(6, type);
+                    pstmt.setInt(7, uniqueId);
+                    
+                    pstmt.execute();
                 }
         
                 //Insert Chance Cards For That Board
+                for (int i = 0; i < chanceCards.size(); i++) {
+                    JsonObject objects = chanceCards.getJsonObject(i);
+                    String name = objects.getString("name");
+                    String description = objects.getString("description");
+                    String type = objects.getString("type");
+                    
+                    pstmt = conn.prepareStatement("INSERT INTO chance (chance_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
 
+                    pstmt.setInt(1, i);
+                    pstmt.setString(2, name);
+                    pstmt.setString(3, description);
+                    pstmt.setString(4, type);
+                    pstmt.setInt(5, uniqueId);
+                    
+                    pstmt.execute();
+                }
 
                 //Insert Community Chest Cards For That Board
+                for (int i = 0; i < communutyCards.size(); i++) {
+                    JsonObject objects = communutyCards.getJsonObject(i);
+                    String name = objects.getString("name");
+                    String description = objects.getString("description");
+                    String type = objects.getString("type");
+                    
+                    pstmt = conn.prepareStatement("INSERT INTO communitychest (chest_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
+
+                    pstmt.setInt(1, i);
+                    pstmt.setString(2, name);
+                    pstmt.setString(3, description);
+                    pstmt.setString(4, type);
+                    pstmt.setInt(5, uniqueId);
+                    
+                    pstmt.execute();
+                }
             }
-         }
-         catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             System.out.println(ex);
-         }
+        }
         catch (NumberFormatException ex) {
             System.out.println(ex);
         }

@@ -160,10 +160,10 @@ function retrievePropertyInfo() {
                 case 1:
                     var regex = new RegExp("^\d*[0-9](,\d*[0-9]){5}$");
                     if ($(this).val() !== "" && regex.test($(this).val())) {
-                        properties[index].setTax($(this).val().split(',')); 
+                        properties[index].setTax($(this).val()); 
                     }
                     else {
-                        properties[index].setTax($(this).attr('placeholder').split(',')); 
+                        properties[index].setTax($(this).attr('placeholder')); 
                     }
                     break;
                 case 2:
