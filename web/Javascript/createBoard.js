@@ -37,8 +37,8 @@ function readImage(file) {
             
             if (errorMessage.length > 0) {
                 //$('#imageNextButton').prop('disabled', true);
-                
-                $('#cardDescDialog').dialog('open');
+                $('#errorMessage').html(errorMessage);
+                $('#imageUploadDialog').dialog('open');
             }
             else {
                 //$('#imageNextButton').prop('disabled', false);
@@ -48,6 +48,16 @@ function readImage(file) {
             alert('Invalid file type: '+ file.type);
         };      
     };
+}
+
+function fileOnload(e) {
+    var $img = $('<img>', { src: e.target.result });
+    var canvas = $('#imageCanvas')[0];
+    var context = canvas.getContext('2d');
+
+    $img.load(function() {
+        context.drawImage(this, 0, 0);
+    });
 }
 
 function showNextTab(nextForm, nextTab) {
@@ -99,8 +109,27 @@ function initializeElements() {
         showNextTab('formProperty', 'propertyTab');
     });
     
+    $('#myFile').change(function(e) {
+        var file = e.target.files[0],
+            imageType = /image.*/;
+        
+        if (!file.type.match(imageType))
+            return;
+        
+        var reader = new FileReader();
+        reader.onload = fileOnload;
+        reader.readAsDataURL(file);
+        
+    });
+    $('#previewImageButton').click(function() {
+        $('#imageDialog').dialog('open');
+    });
+    
+    
     $('#imageDialog').dialog({
-        autoOpen: false
+        autoOpen: false,
+        width: 850,
+        height: 850
     });
     $('#imageUploadDialog').dialog({
         autoOpen: false

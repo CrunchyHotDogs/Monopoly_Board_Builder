@@ -102,15 +102,14 @@
         <title>Build Board</title>
     </head>
     <body>
-        <div id="imageDialog" class="hidden">
-            <canvas>
-                
+        <div id="imageDialog" title="Image Preview" class="hidden">
+            <canvas id="imageCanvas" width="850" height="850">
             </canvas>
         </div>
-        <div id="imageUploadDialog" class="hidden">
-            <p id=""></p>
+        <div id="imageUploadDialog" title="Errors With Image" class="hidden">
+            <p id="errorMessage"></p>
         </div>
-        <div id="cardDescDialog" class="hidden">
+        <div id="cardDescDialog" title="Card Description" class="hidden">
             
         </div>
         
@@ -252,6 +251,7 @@
                         <div class="upload margin20px">
                             <input id="myFile" type="file" accept=".jpg" />
                         </div>
+                        <button id="previewImageButton" class="submitButton">Preview Image</button>
                         
                         <button id="imageNextButton" class="submitButton margin20px">Submit</button>
                     </div>
