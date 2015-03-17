@@ -8,6 +8,7 @@
  * Global Variables
  */
 var jsonObject = "{";
+var board = new Board();
 var imageFLAG = true;
 
 $(document).ready(function () {
@@ -107,7 +108,13 @@ function initializeElements() {
     });
     $('#imageNextButton').click(function () {
         retrieveImage();
+        showNextTab('formBoardName', 'boardNameTab');
     });
+    $('#boardNameNextButton').click(function () {
+        retrieveBoardName(); 
+        showNextTab('formFinished', '');
+    });
+    
     
     $('#myFile').change(function(e) {
         var file = e.target.files[0],
@@ -285,13 +292,7 @@ function retrieveCommunityChestInfo() {
 }
 
 function retrieveImage() {
-    var board = new Board();
-    board.setName("Fake Board");
     board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg");
-    
-    jsonObject += "\"board\" : [";
-    jsonObject += board.toJson();
-    jsonObject += "]}";
     
     /*var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
@@ -304,7 +305,19 @@ function retrieveImage() {
     else {
         imageFLAG = false;
     }*/
+}
+
+function retrieveBoardName() {
+    if ($('#boardName').val() !== "") {
+        board.setName($('#boardName').val());
+    }
+    else {
+        board.setName($('#boardName').attr('placeholder'));
+    }
     
+    jsonObject += "\"board\" : [";
+    jsonObject += board.toJson();
+    jsonObject += "]}";
     
     $.ajax({
         type: 'POST',
@@ -312,4 +325,5 @@ function retrieveImage() {
         dataType: "json",
         data: jsonObject
     });
+    
 }

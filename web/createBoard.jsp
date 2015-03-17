@@ -111,7 +111,6 @@
             <p id="errorMessage"></p>
         </div>
         <div id="cardDescDialog" title="Card Description" class="hidden">
-            
         </div>
         
         <div class="createBoardPageDiv">
@@ -126,6 +125,7 @@
                     <span id="chanceTab" class="tabSpan notSelectedTab">Chance Cards</span>
                     <span id="communityChestTab" class="tabSpan notSelectedTab">Community Chest Cards</span>
                     <span id="imageTab" class="tabSpan notSelectedTab">Game Board Image</span>
+                    <span id="boardNameTab" class="tabSpan notSelectedTab">Game Title</span>
                 </div>
                 
                 <div id="forms" class="formsDiv">
@@ -254,7 +254,20 @@
                         </div>
                         <button id="previewImageButton" class="submitButton">Preview Image</button>
                         
-                        <button id="imageNextButton" class="submitButton margin20px">Submit</button>
+                        <button id="imageNextButton" class="submitButton margin20px">Board Name</button>
+                    </div>
+                    
+                        
+                    <div id="formBoardName" class="infoForms">
+                        <label>Enter a name for your board:</label>
+                        <input id="boardName" class="formTextField largeFormTextField margin20px" placeholder="Original Monopoly" />
+                        
+                        <button id="boardNameNextButton" class="submitButton margin20px">Submit Board</button>
+                    </div>
+                        
+                        
+                    <div id="formFinished" class="infoForms">
+                        <label class="infoLabel margin20px">Thank you for inserting a board for our game!</label>
                     </div>
                 </div>
             </div>

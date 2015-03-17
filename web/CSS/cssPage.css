@@ -50,6 +50,10 @@ and open the template in the editor.
 .margin20px {
     margin-left: 20px !important;
 }
+.infoLabel {
+    font-size: 1.25em;
+    font-weight: bold;
+}
 .submitButton {
     font-size: 1.25em;
     text-transform: uppercase;
