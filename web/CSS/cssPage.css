@@ -33,6 +33,9 @@ and open the template in the editor.
 .pageDiv {
     width: 1600px;
 }
+.viewOneProperty {
+    margin-top: 35px;
+}
 .jsonTextArea {
     margin-top: 20px;
     margin-bottom: 20px;

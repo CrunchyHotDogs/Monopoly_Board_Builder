@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.InputStream;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -21,6 +24,32 @@ import javax.ws.rs.core.Response;
  */
 @Path("/boardUpload")
 public class Boards {
+    @GET
+    @Produces("application/json")
+    public Response getAllBoards() {
+        String returnString = "";
+        try (Connection conn = credentials.Credentials.getConnection()) {
+            JsonArrayBuilder jsonArray = Json.createArrayBuilder();
+            JsonObjectBuilder json = Json.createObjectBuilder();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                json.add("id", rs.getInt("board_id"))
+                        .add("name", rs.getString("board_name"));
+                jsonArray.add(json);
+            }
+            
+            JsonArray completeJson = jsonArray.build();
+            returnString = completeJson.toString();
+        }
+        catch(SQLException ex) {
+            
+        }
+        
+        return Response.ok(returnString).build();
+    }
+    
     @POST
     @Path("/image")
     @Consumes("image/jpeg")

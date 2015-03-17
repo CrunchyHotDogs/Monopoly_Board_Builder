@@ -12,6 +12,8 @@
         <script src="Javascript/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="Javascript/jquery-ui-1.11.4/jquery-ui.css" type="text/" />
         <script src="Javascript/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <script src="Javascript/viewBoards.js"></script>
+        
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Boards</title>
@@ -19,6 +21,19 @@
     <body>
         <div class="pageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
+             <div class="pageLogos">
+                 <img class="logoImage" src="Images/viewBoardsLogo.png" alt="View Boards" />
+            </div>
+            
+            <div class="newBoardForm">
+                <div id="spans">
+                    <span id="propertyTab" class="tabSpan selectedTab">View Boards</span>
+                </div>
+                
+                <div id="viewBoardsDiv" class="formsDiv">
+                    
+                </div>
+            </div>
         </div>
     </body>
 </html>
