@@ -21,16 +21,17 @@ import javax.ws.rs.core.Response;
  */
 @Path("/boardUpload")
 public class Boards {
-    /*@POST
+    @POST
     @Path("/image")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadImage(@FormDataParam("file") InputStream in, @FormDataParam("file") FormDataContentDisposition fileDetail) {   
+    @Consumes("image/jpeg")
+    public Response uploadImage() {   
         return null;
-    }*/
+    }
     
     @POST   
     public Response uploadBoard(String boardJson) {
         int uniqueId;
+        Response response;
         
         JsonReader reader = Json.createReader(new StringReader(boardJson));
         JsonObject json = reader.readObject();
@@ -120,13 +121,11 @@ public class Boards {
                 }
             }
         }
-        catch (SQLException ex) {
+        catch (SQLException | NumberFormatException ex) {
             System.out.println(ex);
-        }
-        catch (NumberFormatException ex) {
-            System.out.println(ex);
+            return Response.status(500).build();
         }
         
-        return null;
+        return Response.ok().build();
     }
 }
