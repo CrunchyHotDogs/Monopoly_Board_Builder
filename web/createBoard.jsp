@@ -113,9 +113,9 @@
         <div id="cardDescDialog" title="Card Description" class="hidden">
         </div>
         
-        <div class="createBoardPageDiv">
+        <div class="pageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
-            <div class="createNewBoardLogoDiv">
+            <div class="pageLogos">
                 <img class="logoImage" src="Images/createNewBoardLogo.png" alt="Create New Board" />
             </div>
             
@@ -160,16 +160,16 @@
                             for (int i = 0; i < properties.length; i++) { 
                         %>
                         <div class="oneProperty">
-                            <input id="propertyName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=properties[i].getName()%>" />
-                            <input id="propertyTax<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=properties[i].getTaxString()%>" />
-                            <input id="propertyPrice<%=i%>" type="text" class="formTextField smallFormTextField margin20px" placeholder="<%=properties[i].getCost()%>" />
-                            <input id="propertyHouse<%=i%>" type="text" class="formTextField smallFormTextField margin20px" placeholder="<%=properties[i].getHouse()%>" />
-                            <input id="propertyType<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=properties[i].getType()%>" />
+                            <input id="propertyName<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=properties[i].getName()%>" />
+                            <input id="propertyTax<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=properties[i].getTaxString()%>" />
+                            <input id="propertyPrice<%=i%>" type="text" class="formTextField smallFormTextField marginLeft20px" placeholder="<%=properties[i].getCost()%>" />
+                            <input id="propertyHouse<%=i%>" type="text" class="formTextField smallFormTextField marginLeft20px" placeholder="<%=properties[i].getHouse()%>" />
+                            <input id="propertyType<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=properties[i].getType()%>" />
                             <button class="submitButton mapButton">Map</button>
                         </div>
                         <% } %>
                     
-                        <button id="propertyNextButton" class="submitButton margin20px">Chance Cards</button>
+                        <button id="propertyNextButton" class="submitButton marginLeft20px">Chance Cards</button>
                     </div>
                     
                     <div id="formChance" class="infoForms">
@@ -192,16 +192,16 @@
                             for (int i = 0; i < chanceCards.length; i++) {    
                         %>
                         <div class="oneChanceCard">
-                            <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=chanceCards[i].getName()%>" />
-                            <input id="chanceLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=chanceCards[i].getType()%>" disabled="disabled" />
-                            <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" placeholder="<%=chanceCards[i].getDescription()%>" />
+                            <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=chanceCards[i].getName()%>" />
+                            <input id="chanceLetter<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=chanceCards[i].getType()%>" disabled="disabled" />
+                            <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField marginLeft20px" placeholder="<%=chanceCards[i].getDescription()%>" />
                             <button class="cardInfo">What Happens</button>
                         </div>
                         <%
                             }
                         %>
                         
-                        <button id="chanceNextButton" class="submitButton margin20px">Community Chest Cards</button>
+                        <button id="chanceNextButton" class="submitButton marginLeft20px">Community Chest Cards</button>
                     </div>
                     
                         
@@ -226,16 +226,16 @@
                             for (int i = 0; i < communityChestCards.length; i++) {    
                         %>
                         <div class="oneCommunityChest">
-                            <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField margin20px" placeholder="<%=communityChestCards[i].getName()%>" />
-                            <input id="chestLetter<%=i%>" type="hidden" class="formTextField margin20px" placeholder="<%=communityChestCards[i].getType()%>" disabled="disabled" />
-                            <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField margin20px" title="<%=communityChestCards[i].getDescription()%>" placeholder="<%=communityChestCards[i].getDescription()%>" />
+                            <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=communityChestCards[i].getName()%>" />
+                            <input id="chestLetter<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=communityChestCards[i].getType()%>" disabled="disabled" />
+                            <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField marginLeft20px" title="<%=communityChestCards[i].getDescription()%>" placeholder="<%=communityChestCards[i].getDescription()%>" />
                             <button class="cardInfo">What Happens</button>
                         </div>
                         <%
                             }
                         %>
                         
-                        <button id="communityChestNextButton" class="submitButton margin20px">Game Image</button>
+                        <button id="communityChestNextButton" class="submitButton marginLeft20px">Game Image</button>
                     </div>
                     
               
@@ -249,25 +249,25 @@
                             </span>
                         </div>
                         
-                        <div class="upload margin20px">
+                        <div class="upload marginLeft20px">
                             <input id="myFile" type="file" accept=".jpg" />
                         </div>
                         <button id="previewImageButton" class="submitButton">Preview Image</button>
                         
-                        <button id="imageNextButton" class="submitButton margin20px">Board Name</button>
+                        <button id="imageNextButton" class="submitButton marginLeft20px">Board Name</button>
                     </div>
                     
                         
                     <div id="formBoardName" class="infoForms">
                         <label>Enter a name for your board:</label>
-                        <input id="boardName" class="formTextField largeFormTextField margin20px" placeholder="Original Monopoly" />
+                        <input id="boardName" class="formTextField largeFormTextField marginLeft20px" placeholder="Original Monopoly" />
                         
-                        <button id="boardNameNextButton" class="submitButton margin20px">Submit Board</button>
+                        <button id="boardNameNextButton" class="submitButton marginLeft20px">Submit Board</button>
                     </div>
                         
                         
                     <div id="formFinished" class="infoForms">
-                        <label class="infoLabel margin20px">Thank you for inserting a board for our game!</label>
+                        <label class="infoLabel marginLeft20px">Thank you for inserting a board for our game!</label>
                     </div>
                 </div>
             </div>

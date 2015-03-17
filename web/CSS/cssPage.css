@@ -30,10 +30,15 @@ and open the template in the editor.
     margin: 0 auto;
     width: 25%;
 }
-.createBoardPageDiv {
+.pageDiv {
     width: 1600px;
 }
-.createNewBoardLogoDiv {
+.jsonTextArea {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    resize: none;
+}
+.pageLogos {
     width: 45%;
     margin: 0 auto;
     border-top: darkblue groove 20px;
@@ -47,8 +52,11 @@ and open the template in the editor.
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.margin20px {
+.marginLeft20px {
     margin-left: 20px !important;
+}
+.marginBottom20px {
+    margin-bottom: 20px !important;
 }
 .infoLabel {
     font-size: 1.25em;

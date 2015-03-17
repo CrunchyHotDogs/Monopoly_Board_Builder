@@ -325,5 +325,4 @@ function retrieveBoardName() {
         dataType: "json",
         data: jsonObject
     });
-    
 }
