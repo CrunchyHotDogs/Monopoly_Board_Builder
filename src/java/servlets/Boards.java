@@ -20,17 +20,24 @@ public class Boards {
         System.out.println("Hello World!");
     }
     
+    @POST
+    @Path("/image")
+    public Response uploadImage() {   
+        return null;
+    }
+    
     @POST   
     public Response uploadBoard(String boardJson) {
-        try (Connection conn = credentials.Credentials.getConnection()) {
+        /*try (Connection conn = credentials.Credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO board (board_name, image_url) VALUES ('3', '32');");
             pstmt.executeUpdate();
             
          }
          catch (SQLException ex) {
              
-         }
+         }*/
         
+        System.out.println(boardJson);
         return null;
     }
 }

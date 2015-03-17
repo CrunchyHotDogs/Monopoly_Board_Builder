@@ -8,6 +8,7 @@
  * Global Variables
  */
 var jsonObject = "{";
+var imageFLAG = true;
 
 $(document).ready(function () {
     showNextTab('formProperty', 'propertyTab');
@@ -281,17 +282,27 @@ function retrieveCommunityChestInfo() {
         }
     }
     jsonObject += "]";
-    console.log(jsonObject + "}");
+    //console.log(jsonObject + "}");
 }
 
 function retrieveImage() {
-    var fileSelect = document.getElementById('');
+    /*var fileSelect = document.getElementById('myFile');
+    var files = fileSelect.files;
+    var formData = new FormData();
     
+    if (files.length > 0) {
+        var file = files[0];
+        formData.append('boardImage', file, files.name);
+    }
+    else {
+        imageFLAG = false;
+    }*/
     
     
     $.ajax({
         type: 'POST',
-        url: "./boards/boardUpload"
+        url: "./boards/boardUpload",
+        dataType: "json",
+        data: jsonObject
     });
-    
 }
