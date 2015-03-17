@@ -106,7 +106,6 @@ function initializeElements() {
     });
     $('#imageNextButton').click(function () {
         retrieveImage();
-        showNextTab('formProperty', 'propertyTab');
     });
     
     $('#myFile').change(function(e) {
@@ -135,7 +134,9 @@ function initializeElements() {
         autoOpen: false
     });
     $('#cardDescDialog').dialog({
-        autoOpen: false
+        autoOpen: false,
+        width: 400,
+        height: 300
     });
 }
 
@@ -284,5 +285,13 @@ function retrieveCommunityChestInfo() {
 }
 
 function retrieveImage() {
-    console.log($('#myFile').val());
+    var fileSelect = document.getElementById('');
+    
+    
+    
+    $.ajax({
+        type: 'POST',
+        url: "./boards/boardUpload"
+    });
+    
 }
