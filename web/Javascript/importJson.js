@@ -9,6 +9,10 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: "./boards/boardUpload",
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
             dataType: "json",
             data: jsonObject
         });

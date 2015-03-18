@@ -12,6 +12,7 @@
         <script src="Javascript/jquery-2.1.3.min.js"></script>
         <link rel="stylesheet" href="Javascript/jquery-ui-1.11.4/jquery-ui.css" type="text/" />
         <script src="Javascript/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <script src="Javascript/importJson.js"></script>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Import Json</title>

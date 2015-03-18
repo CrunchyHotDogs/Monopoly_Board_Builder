@@ -33,7 +33,7 @@ public class JsonParser {
         
         while (chance.next()) {
             singleJson.add("name", chance.getString("name"))
-                    .add("desctiption", chance.getString("description"))
+                    .add("description", chance.getString("description"))
                     .add("type", chance.getString("type"));
             jsonArray.add(singleJson);
         }
@@ -42,7 +42,7 @@ public class JsonParser {
         
         while (communty.next()) {
             singleJson.add("name", communty.getString("name"))
-                    .add("desctiption", communty.getString("description"))
+                    .add("description", communty.getString("description"))
                     .add("type", communty.getString("type"));
             jsonArray.add(singleJson);
         }
