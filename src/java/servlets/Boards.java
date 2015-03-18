@@ -17,6 +17,7 @@ import javax.json.JsonReader;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import json.JsonParser;
 
 /**
  *
@@ -28,6 +29,14 @@ public class Boards {
     @Path("{id}")
     @Produces("application/json")
     public Response getSpecificBoard(@PathParam("id") int id) {
+        try (Connection conn = credentials.Credentials.getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
+            
+            ResultSet rs = pstmt.executeQuery();
+        }
+        catch (SQLException ex) {
+            return Response.status(500).build();
+        }
         String test = "{\"id\": 3}";
         return Response.ok(test).build();
     }
@@ -37,19 +46,9 @@ public class Boards {
     public Response getAllBoards() {
         String returnString = "";
         try (Connection conn = credentials.Credentials.getConnection()) {
-            JsonArrayBuilder jsonArray = Json.createArrayBuilder();
-            JsonObjectBuilder json = Json.createObjectBuilder();
             PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
             
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                json.add("id", rs.getInt("board_id"))
-                        .add("name", rs.getString("board_name"));
-                jsonArray.add(json);
-            }
-            
-            JsonArray completeJson = jsonArray.build();
-            returnString = completeJson.toString();
+            returnString = JsonParser.getAllBoards(pstmt.executeQuery());
         }
         catch(SQLException ex) {
             
