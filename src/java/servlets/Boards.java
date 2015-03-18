@@ -25,6 +25,14 @@ import javax.ws.rs.core.Response;
 @Path("/boardUpload")
 public class Boards {
     @GET
+    @Path("{id}")
+    @Produces("application/json")
+    public Response getSpecificBoard(@PathParam("id") int id) {
+        String test = "{\"id\": 3}";
+        return Response.ok(test).build();
+    }
+    
+    @GET
     @Produces("application/json")
     public Response getAllBoards() {
         String returnString = "";

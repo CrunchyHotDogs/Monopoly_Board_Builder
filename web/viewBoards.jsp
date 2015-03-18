@@ -20,7 +20,7 @@
     </head>
     <body>
         <div id="exportJsonDialog" title="Export Json">
-            <textarea id="exportJsonTextArea" class="jsonTextArea hidden" rows="10" cols="30"></textarea>
+            <textarea id="exportJsonTextArea" class="noDrag" rows="25" cols="77"></textarea>
         </div>
         
         <div class="pageDiv">

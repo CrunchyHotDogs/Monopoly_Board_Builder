@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="formsDiv">
-                    <textarea id="importJsonTextArea" class="marginLeft20px jsonTextArea" placeholder="Json data...." cols="125" rows="25"></textarea>
+                    <textarea id="importJsonTextArea" class="marginLeft20px jsonTextArea noDrag" placeholder="Json data...." cols="125" rows="25"></textarea>
                     <button id="importJsonSubmit" class="submitButton marginLeft20px">Submit</button>
                 </div>
             </div>

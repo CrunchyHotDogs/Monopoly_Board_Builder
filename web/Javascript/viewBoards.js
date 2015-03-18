@@ -5,7 +5,12 @@
 
 $(document).ready(function() {
     $('#exportJsonDialog').dialog({
-        autoOpen: false
+        autoOpen: false,
+        width: 750,
+        height: 600,
+        open: function (event, ui) {
+            $('#exportJsonDialog').css('overflow', 'hidden');
+        }
     });
     
     var getBoards = function() {
@@ -46,7 +51,7 @@ $(document).ready(function() {
                                 url: url,
                                 method: "GET",
                                 success: function(data) {
-                                    $('#exportJsonTextArea').val(data);
+                                    $('#exportJsonTextArea').val(JSON.stringify(data));
                                     $('#exportJsonDialog').dialog('open');
                                 }
                             });
