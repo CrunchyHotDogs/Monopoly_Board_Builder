@@ -10,17 +10,38 @@ $(document).ready(function() {
                         for (var i = 0; i < data.length; i++) {
                             insertDiv(data[i].id, data[i].name);
                         }
+                        
+                        $('.saveNameButton').click(function() {
+                            var jsonObject = new Object();
+                            jsonObject.id = $(this).closest("div").find(".hiddenId").val();;
+                            jsonObject.name = $(this).closest("div").find(".boardNameValue").val();
+                            
+                            $.ajax({
+                                url: "./boards/boardUpload",
+                                headers: { 
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json' 
+                                },
+                                method: "PUT",
+                                dataType: "json",
+                                data: JSON.stringify(jsonObject),
+                                success: getBoards
+                            });
+                        });
+                        $('.deleteButton').click(function() {
+                            var id = $(this).closest("div").find(".hiddenId").val();
+                            var url = "./boards/boardUpload/" + id
+                            $.ajax({
+                               url: url,
+                               method: "DELETE",
+                               success: getBoards
+                            });
+                        });
                     });
                 };
-    
+                
     getBoards();
-
-    $('.saveNameButton').click(function() {
-        console.log($(this).closest("div").find(".hiddenId").val());
-    });
-    $('.deleteButton').click(function() {
-        console.log($(this).closest("div").find(".boardNameValue").val());
-    });
+    
 });
 
 function insertDiv(boardId, boardName) {

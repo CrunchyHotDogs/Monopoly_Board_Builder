@@ -57,7 +57,8 @@ public class Boards {
         return null;
     }
     
-    @POST   
+    @POST
+    @Consumes("application/json")
     public Response uploadBoard(String boardJson) {
         int uniqueId;
         Response response;
@@ -155,6 +156,46 @@ public class Boards {
             return Response.status(500).build();
         }
         
+        return Response.ok().build();
+    }
+    
+    @PUT
+    @Consumes("application/json")
+    public Response updateBoard(String board) {
+        JsonReader reader = Json.createReader(new StringReader(board));
+        JsonObject json = reader.readObject();
+        
+        
+        try (Connection conn = credentials.Credentials.getConnection()) {
+            String id = json.getString("id");
+            String name = json.getString("name");
+        
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE board SET board_name = ? WHERE board_id = ?;");
+            pstmt.setString(1, name);
+            pstmt.setInt(2, Integer.parseInt(id));
+            
+            pstmt.execute();
+        }
+        catch(SQLException ex) {
+            return Response.status(500).build();
+        }
+        
+        return Response.ok().build();
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public Response deleteBoard(@PathParam("id") int id) {
+        try (Connection conn = credentials.Credentials.getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM board WHERE board_id = ?");
+
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        }
+        catch (SQLException ex) {
+            return Response.status(500).build();
+        }
         return Response.ok().build();
     }
 }
