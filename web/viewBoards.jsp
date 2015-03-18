@@ -19,6 +19,10 @@
         <title>View Boards</title>
     </head>
     <body>
+        <div id="exportJsonDialog" title="Export Json">
+            <textarea id="exportJsonTextArea" class="jsonTextArea hidden" rows="10" cols="30"></textarea>
+        </div>
+        
         <div class="pageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
              <div class="pageLogos">

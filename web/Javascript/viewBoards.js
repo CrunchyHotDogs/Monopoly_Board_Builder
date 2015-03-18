@@ -4,6 +4,10 @@
  */
 
 $(document).ready(function() {
+    $('#exportJsonDialog').dialog({
+        autoOpen: false
+    });
+    
     var getBoards = function() {
                     $.getJSON("./boards/boardUpload", function(data) {
                         $('#viewBoardsDiv').html('');
@@ -29,12 +33,22 @@ $(document).ready(function() {
                             });
                         });
                         $('.deleteButton').click(function() {
-                            var id = $(this).closest("div").find(".hiddenId").val();
-                            var url = "./boards/boardUpload/" + id
+                            var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
                             $.ajax({
                                url: url,
                                method: "DELETE",
                                success: getBoards
+                            });
+                        });
+                        $('.exportJsonButton').click(function() {
+                            var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
+                            $.ajax({
+                                url: url,
+                                method: "GET",
+                                success: function(data) {
+                                    $('#exportJsonTextArea').val(data);
+                                    $('#exportJsonDialog').dialog('open');
+                                }
                             });
                         });
                     });
