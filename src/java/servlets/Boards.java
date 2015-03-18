@@ -29,29 +29,46 @@ public class Boards {
     @Path("{id}")
     @Produces("application/json")
     public Response getSpecificBoard(@PathParam("id") int id) {
+        String returnString = "";
+        
         try (Connection conn = credentials.Credentials.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
+            ResultSet rsBoard, rsProp, rsChance, rsCommunity;
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM board WHERE board_id = ?;");
+            pstmt.setInt(1, id);
+            rsBoard = pstmt.executeQuery();
             
-            ResultSet rs = pstmt.executeQuery();
+            pstmt = conn.prepareStatement("SELECT * FROM property WHERE board_id = ?");
+            pstmt.setInt(1, id);
+            rsProp = pstmt.executeQuery();
+            
+            pstmt = conn.prepareStatement("SELECT * FROM chance WHERE board_id = ?");
+            pstmt.setInt(1, id);
+            rsChance = pstmt.executeQuery();
+            
+            pstmt = conn.prepareStatement("SELECT * FROM communitychest WHERE board_id = ?");
+            pstmt.setInt(1, id);
+            rsCommunity = pstmt.executeQuery();
+            
+            returnString = JsonParser.getSpecificBoardJson(rsBoard, rsProp, rsChance, rsCommunity);
         }
         catch (SQLException ex) {
             return Response.status(500).build();
         }
-        String test = "{\"id\": 3}";
-        return Response.ok(test).build();
+        
+        return Response.ok(returnString).build();
     }
     
     @GET
     @Produces("application/json")
     public Response getAllBoards() {
-        String returnString = "";
+        String returnString;
         try (Connection conn = credentials.Credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
             
             returnString = JsonParser.getAllBoards(pstmt.executeQuery());
         }
         catch(SQLException ex) {
-            
+            return Response.status(500).build();
         }
         
         return Response.ok(returnString).build();
@@ -68,7 +85,6 @@ public class Boards {
     @Consumes("application/json")
     public Response uploadBoard(String boardJson) {
         int uniqueId;
-        Response response;
         
         JsonReader reader = Json.createReader(new StringReader(boardJson));
         JsonObject json = reader.readObject();

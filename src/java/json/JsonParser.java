@@ -14,7 +14,7 @@ import javax.json.JsonObjectBuilder;
  * @author Kyle
  */
 public class JsonParser {
-    public static String getSpecificBoardJson(ResultSet info) {
+    public static String getSpecificBoardJson(ResultSet board, ResultSet property, ResultSet chance, ResultSet communty) {
         return "";
     }
     
