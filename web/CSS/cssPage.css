@@ -87,6 +87,9 @@ and open the template in the editor.
 .smallFormTextField {
     width: 50px;
 }
+.boardNameTextField {
+    width: 400px;
+}
 .largeFormTextField {
     width: 200px;
 }

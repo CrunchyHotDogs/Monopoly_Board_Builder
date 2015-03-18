@@ -48,10 +48,11 @@ function insertDiv(boardId, boardName) {
     var HTMLObject = '';
     
     HTMLObject +=   '<div class="viewOneProperty">\n\
-                    <input type="text" class="formTextField veryLargeFormTextField marginLeft20p boardNameValue" value="' + boardName + '" />\n\
+                    <input type="text" class="formTextField boardNameTextField marginLeft20p boardNameValue" value="' + boardName + '" />\n\
                     <input type="hidden" class="hiddenId" value="' + boardId + '" />\n\
                     <button class="submitButton marginLeft20px saveNameButton">Save Name</button>\n\
                     <button class="submitButton deleteButton">Delete Board</button>\n\
+                    <button class="submitButton exportJsonButton">Export Json</button>\n\
                     </div>';
     
     $('#viewBoardsDiv').append(HTMLObject);
