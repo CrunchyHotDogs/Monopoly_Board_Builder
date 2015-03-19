@@ -292,9 +292,7 @@ function retrieveCommunityChestInfo() {
 }
 
 function retrieveImage() {
-    board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg");
-    
-    /*var fileSelect = document.getElementById('myFile');
+    var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
     var formData = new FormData();
     
@@ -304,7 +302,9 @@ function retrieveImage() {
     }
     else {
         imageFLAG = false;
-    }*/
+    }
+    
+    board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg");
 }
 
 function retrieveBoardName() {

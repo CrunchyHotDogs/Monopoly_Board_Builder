@@ -75,13 +75,6 @@ public class Boards {
     }
     
     @POST
-    @Path("/image")
-    @Consumes("image/jpeg")
-    public Response uploadImage() {   
-        return null;
-    }
-    
-    @POST
     @Consumes("application/json")
     public Response uploadBoard(String boardJson) {
         int uniqueId;
