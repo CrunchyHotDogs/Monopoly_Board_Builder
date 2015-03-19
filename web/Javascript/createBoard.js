@@ -10,6 +10,7 @@
 var jsonObject = "{";
 var board = new Board();
 var imageFLAG = true;
+var formData;
 
 $(document).ready(function () {
     showNextTab('formProperty', 'propertyTab');
@@ -294,7 +295,7 @@ function retrieveCommunityChestInfo() {
 function retrieveImage() {
     var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
-    var formData = new FormData();
+    formData = new FormData();
     
     if (files.length > 0) {
         var file = files[0];
@@ -303,11 +304,22 @@ function retrieveImage() {
     else {
         imageFLAG = false;
     }
-    
-    board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg");
 }
 
 function retrieveBoardName() {
+    
+    //Will be moving everything into the success portion of the image upload. The image upload will return a random string that will be
+    //used to set the image url.
+    //
+    
+    
+    if (imageFLAG === true) {
+        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + (new Date).getTime() + ".jpg");
+    }
+    else {
+        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
+    }
+    
     if ($('#boardName').val() !== "") {
         board.setName($('#boardName').val());
     }
@@ -319,6 +331,7 @@ function retrieveBoardName() {
     jsonObject += board.toJson();
     jsonObject += "]}";
     
+    //Will become part of the success of another ajax call. The new ajax call will be for uploading the image.
     $.ajax({
         type: 'POST',
         url: "./boards/boardUpload",
