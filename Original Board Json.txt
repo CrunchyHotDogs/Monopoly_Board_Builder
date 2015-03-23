@@ -1,0 +1,459 @@
+{
+    "property": [
+        {
+            "name": "Go",
+            "tax": "-200,-200,-200,-200,-200,-200",
+            "house": "0",
+            "cost": "0",
+            "type": "G"
+        },
+        {
+            "name": "Mediterranean Avenue",
+            "tax": "2,10,30,90,160,250",
+            "house": "60",
+            "cost": "50",
+            "type": "P"
+        },
+        {
+            "name": "Community Chest",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "CC"
+        },
+        {
+            "name": "Baltic Avenue",
+            "tax": "4,20,60,180,320,450",
+            "house": "60",
+            "cost": "50",
+            "type": ""
+        },
+        {
+            "name": "Income Tax",
+            "tax": "0,0,0,0,0,0",
+            "house": "200",
+            "cost": "0",
+            "type": "IT"
+        },
+        {
+            "name": "Reading Railroad",
+            "tax": "25,25,25,25,25,25",
+            "house": "200",
+            "cost": "0",
+            "type": "RR"
+        },
+        {
+            "name": "Oriental Avenue",
+            "tax": "6,30,90,270,400,550",
+            "house": "100",
+            "cost": "50",
+            "type": "P"
+        },
+        {
+            "name": "Chance",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "C"
+        },
+        {
+            "name": "Vermont Avenue",
+            "tax": "6,30,90,270,400,550",
+            "house": "100",
+            "cost": "50",
+            "type": "P"
+        },
+        {
+            "name": "Connecticut Avenue",
+            "tax": "8,40,100,300,450,600",
+            "house": "120",
+            "cost": "50",
+            "type": "P"
+        },
+        {
+            "name": "Jail",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "J"
+        },
+        {
+            "name": "St. Charles Place",
+            "tax": "10,50,150,450,625,750",
+            "house": "140",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "Electric Company",
+            "tax": "0,0,0,0,0,0",
+            "house": "150",
+            "cost": "0",
+            "type": "U"
+        },
+        {
+            "name": "States Avenue",
+            "tax": "10,50,150,450,625,750",
+            "house": "140",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "Virginia Avenue",
+            "tax": "12,60,180,500,700,900",
+            "house": "160",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "Pennsylvania Railroad",
+            "tax": "25,25,25,25,25,25",
+            "house": "200",
+            "cost": "0",
+            "type": "RR"
+        },
+        {
+            "name": "St. James Place",
+            "tax": "14,70,200,550,750,950",
+            "house": "180",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "Community Chest",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "CC"
+        },
+        {
+            "name": "Tennessee Avenue",
+            "tax": "14,70,200,550,750,950",
+            "house": "180",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "New York Avenue",
+            "tax": "16,80,220,600,800,1000",
+            "house": "200",
+            "cost": "100",
+            "type": "P"
+        },
+        {
+            "name": "Free Parking",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "FP"
+        },
+        {
+            "name": "Kentucky Avenue",
+            "tax": "16,90,250,700,875,1050",
+            "house": "220",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "Chance",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "C"
+        },
+        {
+            "name": "Indiana Avenue",
+            "tax": "18,90,250,700,875,1050",
+            "house": "220",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "Illinois Avenue",
+            "tax": "20,100,300,750,925,1100",
+            "house": "240",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "B. & O. Railroad",
+            "tax": "25,25,25,25,25,25",
+            "house": "200",
+            "cost": "0",
+            "type": "RR"
+        },
+        {
+            "name": "Atlantic Avenue",
+            "tax": "22,110,330,800,975,1150",
+            "house": "260",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "Ventnor Avenue",
+            "tax": "22,110,330,800,975,1150",
+            "house": "260",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "Water Works",
+            "tax": "0,0,0,0,0,0",
+            "house": "150",
+            "cost": "0",
+            "type": "U"
+        },
+        {
+            "name": "Marvin Gardens",
+            "tax": "24,120,360,850,1025,1200",
+            "house": "280",
+            "cost": "150",
+            "type": "P"
+        },
+        {
+            "name": "Go To Jail",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "GTJ"
+        },
+        {
+            "name": "Pacific Avenue",
+            "tax": "26,130,390,900,1100,1275",
+            "house": "300",
+            "cost": "200",
+            "type": "P"
+        },
+        {
+            "name": "North Carolina Avenue",
+            "tax": "26,130,390,900,1100,1275",
+            "house": "300",
+            "cost": "200",
+            "type": "P"
+        },
+        {
+            "name": "Community Chest",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "CC"
+        },
+        {
+            "name": "Pennsylvania Avenue",
+            "tax": "28,150,450,1000,1200,1400",
+            "house": "320",
+            "cost": "200",
+            "type": "P"
+        },
+        {
+            "name": "Short Line",
+            "tax": "25,25,25,25,25,25",
+            "house": "200",
+            "cost": "0",
+            "type": "RR"
+        },
+        {
+            "name": "Chance",
+            "tax": "0,0,0,0,0,0",
+            "house": "0",
+            "cost": "0",
+            "type": "C"
+        },
+        {
+            "name": "Park Place",
+            "tax": "35,175,500,1100,1300,1500",
+            "house": "350",
+            "cost": "200",
+            "type": "P"
+        },
+        {
+            "name": "Luxury Tax",
+            "tax": "0,0,0,0,0,0",
+            "house": "100",
+            "cost": "0",
+            "type": "LT"
+        },
+        {
+            "name": "Boardwalk",
+            "tax": "50,200,600,1400,1700,2000",
+            "house": "400",
+            "cost": "200",
+            "type": "P"
+        }
+    ],
+    "chanceCard": [
+        {
+            "name": "Advance To Go",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.",
+            "type": "A"
+        },
+        {
+            "name": "Advance To Illinois Ave.",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to Illinois Ave. Receive $200 if you pass go.",
+            "type": "B"
+        },
+        {
+            "name": "Advance To St. Charles Place",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to St. Charles Place. Receive $200 if you pass go.",
+            "type": "C"
+        },
+        {
+            "name": "Advance To Nearest Utility",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Utility. You may buy the property if unowned, else pay the owner 10x your roll.",
+            "type": "D"
+        },
+        {
+            "name": "Advance To Nearest Railroad",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Railroad.",
+            "type": "E"
+        },
+        {
+            "name": "Bank Pays You Dividend",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] receives $50 from the bank.",
+            "type": "F"
+        },
+        {
+            "name": "Get Out of Jail Free Card",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] can now escape from jail.",
+            "type": "G"
+        },
+        {
+            "name": "Go Back 3 Spaces",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] must move back 3 spaces. Sorry!",
+            "type": "H"
+        },
+        {
+            "name": "Go To Jail",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] goes directly to jail, no go money.",
+            "type": "I"
+        },
+        {
+            "name": "Make General Repairs On Your Property",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $25 per house, $100 for each hotel.",
+            "type": "J"
+        },
+        {
+            "name": "Pay Poor Tax",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $15 tax.",
+            "type": "K"
+        },
+        {
+            "name": "Take A Trip To Reading Railroad",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] receives $200 if they pass go. Toot toot!",
+            "type": "L"
+        },
+        {
+            "name": "Take A Walk On Broadwalk",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] takes a walk on Broadwalk, better hope no one lives here!",
+            "type": "M"
+        },
+        {
+            "name": "You Have Been Elected Chairman of the Board",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] pays each player $50.",
+            "type": "N"
+        },
+        {
+            "name": "Your Building Loan Matures",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] receives $150.",
+            "type": "O"
+        },
+        {
+            "name": "You Have Won A Crossword Competition",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] receives $100.",
+            "type": "P"
+        }
+    ],
+    "communityChest": [
+        {
+            "name": "Advance To Go",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.",
+            "type": "A"
+        },
+        {
+            "name": "Bank Error In Your Favor",
+            "description": "[DESCRIPTION]<br/>A bank error has occured in your favor! Collect $200, [PLAYER_NAME].",
+            "type": "B"
+        },
+        {
+            "name": "Doctor's Fee",
+            "description": "[DESCRIPTION]<br/>Oh no! You have to pay a doctor's fee! Pay the doctor $50, [PLAYER_NAME].",
+            "type": "C"
+        },
+        {
+            "name": "From Sale of Stock",
+            "description": "[DESCRIPTION]<br/>Gain $50, [PLAYER_NAME].",
+            "type": "D"
+        },
+        {
+            "name": "Get Out Of Jail Free Card",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] has received a get out of jail free card! WOO!",
+            "type": "E"
+        },
+        {
+            "name": "Go To Jail",
+            "description": "[DESCRIPTION]<br/>Head right on over to the jail!",
+            "type": "F"
+        },
+        {
+            "name": "Grand Opera Night",
+            "description": "[DESCRIPTION]<br/>Every player must purchase tickets. Each player must pay [PLAYER_NAME] $50.",
+            "type": "G"
+        },
+        {
+            "name": "Holiday Fund Matures",
+            "description": "[DESCRIPTION]<br/>Holiday fund time, cheers! Receive $100, [PLAYER_NAME].",
+            "type": "H"
+        },
+        {
+            "name": "Income Tax Refund",
+            "description": "[DESCRIPTION]<br/>Income tax refund. Receive $20, [PLAYER_NAME].",
+            "type": "I"
+        },
+        {
+            "name": "It Is Your Birthday",
+            "description": "[DESCRIPTION]<br/>Happy birthday, [PLAYER_NAME]! Receive $10 from each player.",
+            "type": "J"
+        },
+        {
+            "name": "Life Insurance Matures",
+            "description": "[DESCRIPTION]<br/>Your life insurance has matured. Receive $100, [PLAYER_NAME].",
+            "type": "K"
+        },
+        {
+            "name": "Pay Hospital Fees",
+            "description": "[DESCRIPTION]<br/>Looks like someone had an accident. Pay $100, [PLAYER_NAME].",
+            "type": "L"
+        },
+        {
+            "name": "Pay School Fees",
+            "description": "[DESCRIPTION]<br/>Education is very important. Pay $150, [PLAYER_NAME].",
+            "type": "M"
+        },
+        {
+            "name": "Receives Consultancy Fee",
+            "description": "[DESCRIPTION]<br/>Receive $25, [PLAYER_NAME].",
+            "type": "N"
+        },
+        {
+            "name": "You Are Assessed For Street Repairs",
+            "description": "[DESCRIPTION]<br/>Street repair time, [PLAYER_NAME]. $25 per house, $115 per hotel.",
+            "type": "O"
+        },
+        {
+            "name": "You Have Won Second Prize In A Beauty Contest",
+            "description": "[DESCRIPTION]<br/>Only second place? [PLAYER_NAME] receives $10 for trying.",
+            "type": "P"
+        },
+        {
+            "name": "You Inherit Money",
+            "description": "[DESCRIPTION]<br/>[PLAYER_NAME] inherits $100.",
+            "type": "Q"
+        }
+    ],
+    "board": [
+        {
+            "name": "Original Monopoly",
+            "url": "http://localhost:8080/MonopolyBoardBuilder/Images/FakeImage.jpg"
+        }
+    ]
+}

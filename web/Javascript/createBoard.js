@@ -113,7 +113,7 @@ function initializeElements() {
     });
     $('#boardNameNextButton').click(function () {
         retrieveBoardName(); 
-        showNextTab('formFinished', '');
+        //showNextTab('formFinished', '');
     });
     
     
@@ -295,11 +295,12 @@ function retrieveCommunityChestInfo() {
 function retrieveImage() {
     var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
+    
     formData = new FormData();
     
     if (files.length > 0) {
         var file = files[0];
-        formData.append('boardImage', file, files.name);
+        formData.append('boardImage', file);
     }
     else {
         imageFLAG = false;
@@ -312,6 +313,21 @@ function retrieveBoardName() {
     //used to set the image url.
     //
     
+    $.ajax({
+        type: 'POST',
+        url: "./imageUpload",
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function () {
+            console.log('Form Submitted!');
+        },
+        error: function() {
+            console.log("FAILURE");
+        }
+    });       
     
     if (imageFLAG === true) {
         board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + (new Date).getTime() + ".jpg");
@@ -332,7 +348,7 @@ function retrieveBoardName() {
     jsonObject += "]}";
     
     //Will become part of the success of another ajax call. The new ajax call will be for uploading the image.
-    $.ajax({
+    /*$.ajax({
         type: 'POST',
         url: "./boards/boardUpload",
         headers: { 
@@ -341,5 +357,5 @@ function retrieveBoardName() {
         },
         dataType: "json",
         data: jsonObject
-    });
+    });*/
 }

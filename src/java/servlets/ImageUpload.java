@@ -5,7 +5,12 @@
 package servlets;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +32,9 @@ public class ImageUpload extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OutputStream out = null;
+        InputStream filecontent = null;
+        
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + File.separator + directoryPath;
         
@@ -38,7 +46,29 @@ public class ImageUpload extends HttpServlet {
         
         for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
-            part.write(savePath + File.separator + fileName);
+            
+            try {
+                out = new FileOutputStream(new File(savePath + File.separator + fileName));
+                filecontent = part.getInputStream();
+
+                int read = 0;
+                final byte[] bytes = new byte[1024];
+
+                while ((read = filecontent.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+            } 
+            catch (FileNotFoundException fne) {
+                System.out.println("<br/> ERROR: " + fne.getMessage());
+            }
+            finally {
+                if (out != null) {
+                    out.close();
+                }
+                if (filecontent != null) {
+                    filecontent.close();
+                }
+            }
         }
     }
     
