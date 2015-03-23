@@ -113,7 +113,7 @@ function initializeElements() {
     });
     $('#boardNameNextButton').click(function () {
         retrieveBoardName(); 
-        //showNextTab('formFinished', '');
+        showNextTab('formFinished', '');
     });
     
     
@@ -133,7 +133,6 @@ function initializeElements() {
         $('#imageDialog').dialog('open');
     });
     
-    
     $('#imageDialog').dialog({
         autoOpen: false,
         width: 850,
@@ -146,6 +145,11 @@ function initializeElements() {
         autoOpen: false,
         width: 400,
         height: 300
+    });
+    $('#boardMapDialog').dialog({
+       autoOpen: false,
+       width: 450,
+       height: 450
     });
 }
 

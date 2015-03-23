@@ -34,6 +34,12 @@
                     <span id="propertyTab" class="tabSpan selectedTab">View Boards</span>
                 </div>
                 
+                <div class="loader">
+                    <center>
+                        <img class="loadingImage" src="Images/loading.gif" alt="loading..">
+                    </center>
+                </div>
+                
                 <div id="viewBoardsDiv" class="formsDiv">
                     
                 </div>

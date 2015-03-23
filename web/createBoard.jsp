@@ -110,6 +110,11 @@
         <div id="imageUploadDialog" title="Errors With Image" class="hidden">
             <p id="errorMessage"></p>
         </div>
+        <div id="boardMapDialog" title="Board Map" class="hidden">
+            <canvas id="mapCanvas" width="450" height="450">
+                
+            </canvas>
+        </div>
         <div id="cardDescDialog" title="Card Description" class="hidden">
         </div>
         
@@ -267,7 +272,7 @@
                         
                         
                     <div id="formFinished" class="infoForms">
-                        <label class="infoLabel marginLeft20px">Thank you for inserting a board for our game!</label>
+                        <label class="infoLabel marginLeft20px">Thank you for inserting a board for my game!</label>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,15 @@
                 </div>
                 
                 <div class="formsDiv">
+                    <div class="headerDiv marginTop20px">
+                            <span class="propertyHeader largeHeader">
+                                How This Works  
+                                <span class="pointerCursor" title="This page is used for people who know how JSON data works. You can export a board's json data from the view boards page and simply edit any of the information. You must use the exported json as a starting block or create the json in the exact same format. JSONLint.com may make the json easier to read after exporting it.">
+                                    &ofcir;
+                                </span>
+                            </span>
+                        </div>
+                    
                     <textarea id="importJsonTextArea" class="marginLeft20px jsonTextArea noDrag" placeholder="Json data...." cols="125" rows="25"></textarea>
                     <button id="importJsonSubmit" class="submitButton marginLeft20px">Submit</button>
                 </div>

@@ -4,6 +4,8 @@
  */
 
 $(document).ready(function() {
+     $('.loader').show();
+    
     $('#exportJsonDialog').dialog({
         autoOpen: false,
         width: 750,
