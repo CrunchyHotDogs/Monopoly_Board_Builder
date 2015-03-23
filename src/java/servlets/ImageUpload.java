@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +32,11 @@ public class ImageUpload extends HttpServlet {
     private static final String directoryPath = "Gameboards";
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+        String fileName;
         OutputStream out = null;
         InputStream filecontent = null;
+        final PrintWriter writer = response.getWriter();
         
         String appPath = request.getServletContext().getRealPath("");
         String savePath = appPath + File.separator + directoryPath;
@@ -45,8 +48,7 @@ public class ImageUpload extends HttpServlet {
         }
         
         for (Part part : request.getParts()) {
-            String fileName = extractFileName(part);
-            
+            fileName = new Date().getTime() + ".jpg";
             try {
                 out = new FileOutputStream(new File(savePath + File.separator + fileName));
                 filecontent = part.getInputStream();
@@ -57,6 +59,7 @@ public class ImageUpload extends HttpServlet {
                 while ((read = filecontent.read(bytes)) != -1) {
                     out.write(bytes, 0, read);
                 }
+                writer.println(fileName);
             } 
             catch (FileNotFoundException fne) {
                 System.out.println("<br/> ERROR: " + fne.getMessage());
@@ -68,18 +71,12 @@ public class ImageUpload extends HttpServlet {
                 if (filecontent != null) {
                     filecontent.close();
                 }
+                if (writer != null) {
+                    writer.close();
+                }
             }
+            
+            
         }
-    }
-    
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
     }
 }

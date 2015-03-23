@@ -308,11 +308,28 @@ function retrieveImage() {
 }
 
 function retrieveBoardName() {
+    if ($('#boardName').val() !== "") {
+        board.setName($('#boardName').val());
+    }
+    else {
+        board.setName($('#boardName').attr('placeholder'));
+    }
+    
     
     //Will be moving everything into the success portion of the image upload. The image upload will return a random string that will be
     //used to set the image url.
     //
     
+    if (imageFLAG === true) {
+        ajaxCall();  
+    }
+    else {
+        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
+        ajaxBoardInfoCall();
+    }
+}
+
+function ajaxImageCall() {
     $.ajax({
         type: 'POST',
         url: "./imageUpload",
@@ -321,34 +338,22 @@ function retrieveBoardName() {
         cache: false,
         contentType: false,
         processData: false,
-        success: function () {
-            console.log('Form Submitted!');
+        success: function (data) {
+            board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + data);
         },
         error: function() {
-            console.log("FAILURE");
+            board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
         }
-    });       
-    
-    if (imageFLAG === true) {
-        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + (new Date).getTime() + ".jpg");
-    }
-    else {
-        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
-    }
-    
-    if ($('#boardName').val() !== "") {
-        board.setName($('#boardName').val());
-    }
-    else {
-        board.setName($('#boardName').attr('placeholder'));
-    }
-    
+    });  
+    ajaxBoardInfoCall();
+}
+
+function ajaxBoardInfoCall() {
     jsonObject += "\"board\" : [";
     jsonObject += board.toJson();
     jsonObject += "]}";
-    
-    //Will become part of the success of another ajax call. The new ajax call will be for uploading the image.
-    /*$.ajax({
+
+    $.ajax({
         type: 'POST',
         url: "./boards/boardUpload",
         headers: { 
@@ -357,5 +362,5 @@ function retrieveBoardName() {
         },
         dataType: "json",
         data: jsonObject
-    });*/
+    });
 }
