@@ -377,9 +377,9 @@ function drawRectangle(x, y, width, height) {
     
     mapCanvas.beginPath();
     mapCanvas.strokeStyle = 'red';
+    mapCanvas.lineWidth = 5;
     mapCanvas.rect(x, y, width, height);
     mapCanvas.stroke();
-    
     
     $('#boardMapDialog').dialog('open');
 }

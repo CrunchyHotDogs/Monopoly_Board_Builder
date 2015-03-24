@@ -32,6 +32,10 @@ public class Property {
         this.house = house;
         this.cost = cost;
         this.type = type;
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
     }
 
     public Property(String name, int[] tax, int house, int cost, String type, int x, int y, int width, int height) {
