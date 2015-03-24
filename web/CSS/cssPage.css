@@ -211,17 +211,10 @@ and open the template in the editor.
 .hidden {
     display: none;
 }
-.loadingImage {
-  position: absolute;
+.centered {
+  position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 10;
-}
-.loader {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    z-index: 2;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }

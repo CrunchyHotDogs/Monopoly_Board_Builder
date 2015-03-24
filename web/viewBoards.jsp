@@ -22,22 +22,18 @@
         <div id="exportJsonDialog" title="Export Json">
             <textarea id="exportJsonTextArea" class="noDrag" rows="25" cols="77"></textarea>
         </div>
+        <img src="Images/greenCheckmark.png" alt="Success Change" class="centered hidden" id="successImage" />
+        <img src="Images/redX.png" alt="Failed Change" class="centered hidden" id="errorImage" />
         
         <div class="pageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
-             <div class="pageLogos">
-                 <img class="logoImage" src="Images/viewBoardsLogo.png" alt="View Boards" />
+            <div class="pageLogos">
+                <img class="logoImage" src="Images/viewBoardsLogo.png" alt="View Boards" />
             </div>
             
             <div class="newBoardForm">
                 <div id="spans">
                     <span id="propertyTab" class="tabSpan selectedTab">View Boards</span>
-                </div>
-                
-                <div class="loader">
-                    <center>
-                        <img class="loadingImage" src="Images/loading.gif" alt="loading..">
-                    </center>
                 </div>
                 
                 <div id="viewBoardsDiv" class="formsDiv">

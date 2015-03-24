@@ -4,8 +4,6 @@
  */
 
 $(document).ready(function() {
-     $('.loader').show();
-    
     $('#exportJsonDialog').dialog({
         autoOpen: false,
         width: 750,
@@ -30,13 +28,18 @@ $(document).ready(function() {
                             $.ajax({
                                 url: "./boards/boardUpload",
                                 headers: { 
-                                    'Accept': 'application/json',
                                     'Content-Type': 'application/json' 
                                 },
                                 method: "PUT",
-                                dataType: "json",
                                 data: JSON.stringify(jsonObject),
-                                success: getBoards
+                                success: function() {
+                                    fadeImage('#successImage');
+                                    getBoards();
+                                },
+                                error: function (data) {
+                                    fadeImage('#errorImage');
+                                    console.log(data);
+                                }
                             });
                         });
                         $('.deleteButton').click(function() {
@@ -44,7 +47,14 @@ $(document).ready(function() {
                             $.ajax({
                                url: url,
                                method: "DELETE",
-                               success: getBoards
+                               success: function() {
+                                   fadeImage('#successImage');
+                                   getBoards();
+                               },
+                               error: function(data) {
+                                   fadeImage('#errorImage');
+                                   console.log(data);
+                               }
                             });
                         });
                         $('.exportJsonButton').click(function() {
@@ -77,4 +87,8 @@ function insertDiv(boardId, boardName) {
                     </div>';
     
     $('#viewBoardsDiv').append(HTMLObject);
+}
+
+function fadeImage(id) {
+    $(id).fadeIn(0).fadeOut(1000);
 }
