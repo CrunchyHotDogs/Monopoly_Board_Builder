@@ -13,8 +13,18 @@ $(document).ready(function() {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' 
             },
-            dataType: "json",
-            data: jsonObject
+            data: jsonObject,
+            success: function() {
+                fadeImage('#successImage');
+                $('#importJsonTextArea').val("");
+            },
+            error: function() {
+                fadeImage('#errorImage');
+            }
         });
     });
 });
+
+function fadeImage(id) {
+    $(id).fadeIn(0).fadeOut(1000);
+}

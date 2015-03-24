@@ -18,6 +18,9 @@
         <title>Import Json</title>
     </head>
     <body>
+        <img src="Images/greenCheckmark.png" alt="Success Change" class="centered hidden" id="successImage" />
+        <img src="Images/redX.png" alt="Failed Change" class="centered hidden" id="errorImage" />
+        
         <div class="pageDiv">
             <a href="index.html"><button class="mainMenuButton buttonDisign">Main Menu</button></a>
             <div class="pageLogos">
