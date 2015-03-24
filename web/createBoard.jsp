@@ -111,7 +111,7 @@
             <p id="errorMessage"></p>
         </div>
         <div id="boardMapDialog" title="Board Map" class="hidden">
-            <canvas id="mapCanvas" width="450" height="450">
+            <canvas id="mapCanvas" class="mapCanvas" width="400" height="400">
                 
             </canvas>
         </div>
@@ -170,7 +170,7 @@
                             <input id="propertyPrice<%=i%>" type="text" class="formTextField smallFormTextField marginLeft20px" placeholder="<%=properties[i].getCost()%>" />
                             <input id="propertyHouse<%=i%>" type="text" class="formTextField smallFormTextField marginLeft20px" placeholder="<%=properties[i].getHouse()%>" />
                             <input id="propertyType<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=properties[i].getType()%>" />
-                            <button class="submitButton mapButton">Map</button>
+                            <button class="submitButton mapButton" onclick="drawRectangle(<%=i * 3%>, 20, 40, 30)">Map</button>
                         </div>
                         <% } %>
                     

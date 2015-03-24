@@ -148,8 +148,8 @@ function initializeElements() {
     });
     $('#boardMapDialog').dialog({
        autoOpen: false,
-       width: 450,
-       height: 450
+       width: 460,
+       height: 475
     });
 }
 
@@ -367,4 +367,19 @@ function ajaxBoardInfoCall() {
         dataType: "json",
         data: jsonObject
     });
+}
+
+function drawRectangle(x, y, width, height) {
+    var c = document.getElementById("mapCanvas");
+    var mapCanvas = c.getContext('2d');
+    
+    mapCanvas.clearRect(0, 0, 450, 450);
+    
+    mapCanvas.beginPath();
+    mapCanvas.strokeStyle = 'red';
+    mapCanvas.rect(x, y, width, height);
+    mapCanvas.stroke();
+    
+    
+    $('#boardMapDialog').dialog('open');
 }

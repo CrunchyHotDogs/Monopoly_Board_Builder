@@ -41,6 +41,11 @@ and open the template in the editor.
 .jsonTextArea {
     margin-bottom: 20px;
 }
+.mapCanvas {
+    background-image: url('../Images/spaceViewer.jpg');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
 .pageLogos {
     width: 45%;
     margin: 0 auto;
