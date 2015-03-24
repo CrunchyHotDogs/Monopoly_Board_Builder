@@ -49,40 +49,40 @@
                                 new Property("Luxury Tax", new int[]{0,0,0,0,0,0}, 100, 0, "LT", 350, 284, 50, 33),
                                 new Property("Boardwalk", new int[]{50,200,600,1400,1700,2000}, 400, 200, "P", 350, 317, 50, 33)};
 
-    Card chanceCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A"),
-                            new Card("Advance To Illinois Ave.", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to Illinois Ave. Receive $200 if you pass go.", "B"),
-                            new Card("Advance To St. Charles Place", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to St. Charles Place. Receive $200 if you pass go.", "C"),
-                            new Card("Advance To Nearest Utility", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Utility. You may buy the property if unowned, else pay the owner 10x your roll.", "D"),
-                            new Card("Advance To Nearest Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Railroad.", "E"),
-                            new Card("Bank Pays You Dividend", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $50 from the bank.", "F"),
-                            new Card("Get Out of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] can now escape from jail.", "G"),
-                            new Card("Go Back 3 Spaces", "[DESCRIPTION]<br/>[PLAYER_NAME] must move back 3 spaces. Sorry!", "H"),
-                            new Card("Go To Jail", "[DESCRIPTION]<br/>[PLAYER_NAME] goes directly to jail, no go money.", "I"),
-                            new Card("Make General Repairs On Your Property", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $25 per house, $100 for each hotel.", "J"),
-                            new Card("Pay Poor Tax", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $15 tax.", "K"),
-                            new Card("Take A Trip To Reading Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $200 if they pass go. Toot toot!", "L"),
-                            new Card("Take A Walk On Broadwalk", "[DESCRIPTION]<br/>[PLAYER_NAME] takes a walk on Broadwalk, better hope no one lives here!", "M"),
-                            new Card("You Have Been Elected Chairman of the Board", "[DESCRIPTION]<br/>[PLAYER_NAME] pays each player $50.", "N"),
-                            new Card("Your Building Loan Matures", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $150.", "O"),
-                            new Card("You Have Won A Crossword Competition", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $100.", "P")};
+    Card chanceCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A", "Sends the player who landed on this space to GO (Property #1)."),
+                            new Card("Advance To Illinois Ave.", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to Illinois Ave. Receive $200 if you pass go.", "B", "Sends the player who drew a card directly to Illinois Ave. (Property #25). If they pass go they will collect $200."),
+                            new Card("Advance To St. Charles Place", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to St. Charles Place. Receive $200 if you pass go.", "C", "Sends the player who drew a card directly to St. Charles Place (Property 12#). If they pass go they will collect $200."),
+                            new Card("Advance To Nearest Utility", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Utility. You may buy the property if unowned, else pay the owner 10x your roll.", "D", "Sends the player who drew a card directly to the nearest Utility. (Properties #13 and #29)."),
+                            new Card("Advance To Nearest Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] goes straight to the nearest Railroad.", "E", "Sends the player who drew this card directly to the nearest railroad (Properites #6, #16, #26, and #36)."),
+                            new Card("Bank Pays You Dividend", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $50 from the bank.", "F", "Player who drew this card gains $50."),
+                            new Card("Get Out of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] can now escape from jail.", "G", "Player who drew this card receives a get out of jail free card."),
+                            new Card("Go Back 3 Spaces", "[DESCRIPTION]<br/>[PLAYER_NAME] must move back 3 spaces. Sorry!", "H", "Player who drew this card moves back 3 spaces."),
+                            new Card("Go To Jail", "[DESCRIPTION]<br/>[PLAYER_NAME] goes directly to jail, no go money.", "I", "Player who drew this card goes directly to jail (Property #11)."),
+                            new Card("Make General Repairs On Your Property", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $25 per house, $100 for each hotel.", "J", "Player who drew this card must pay $25 per house (up to 3 houses) and $100 per hotel (up to 1 hotel)."),
+                            new Card("Pay Poor Tax", "[DESCRIPTION]<br/>[PLAYER_NAME] must pay $15 tax.", "K", "Player who drew this card has to pay $15."),
+                            new Card("Take A Trip To Reading Railroad", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $200 if they pass go. Toot toot!", "L", "Player who drew this card goes directly to Reading Railroad (Property #6)."),
+                            new Card("Take A Walk On Broadwalk", "[DESCRIPTION]<br/>[PLAYER_NAME] takes a walk on Broadwalk, better hope no one lives here!", "M", "Player who drew this card goes directly to Broadwalk (Property #40)."),
+                            new Card("You Have Been Elected Chairman of the Board", "[DESCRIPTION]<br/>[PLAYER_NAME] pays each player $50.", "N", "Player who drew this card must pay each other player $50."),
+                            new Card("Your Building Loan Matures", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $150.", "O", "Player who drew this card receives $150."),
+                            new Card("You Have Won A Crossword Competition", "[DESCRIPTION]<br/>[PLAYER_NAME] receives $100.", "P", "Player who drew this card $100.")};
 
-    Card communityChestCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A"),
-                                    new Card("Bank Error In Your Favor", "[DESCRIPTION]<br/>A bank error has occured in your favor! Collect $200, [PLAYER_NAME].", "B"),
-                                    new Card("Doctor's Fee", "[DESCRIPTION]<br/>Oh no! You have to pay a doctor's fee! Pay the doctor $50, [PLAYER_NAME].", "C"),
-                                    new Card("From Sale of Stock", "[DESCRIPTION]<br/>Gain $50, [PLAYER_NAME].", "D"),
-                                    new Card("Get Out Of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] has received a get out of jail free card! WOO!", "E"),
-                                    new Card("Go To Jail", "[DESCRIPTION]<br/>Head right on over to the jail!", "F"),
-                                    new Card("Grand Opera Night", "[DESCRIPTION]<br/>Every player must purchase tickets. Each player must pay [PLAYER_NAME] $50.", "G"),
-                                    new Card("Holiday Fund Matures", "[DESCRIPTION]<br/>Holiday fund time, cheers! Receive $100, [PLAYER_NAME].", "H"),
-                                    new Card("Income Tax Refund", "[DESCRIPTION]<br/>Income tax refund. Receive $20, [PLAYER_NAME].", "I"),
-                                    new Card("It Is Your Birthday", "[DESCRIPTION]<br/>Happy birthday, [PLAYER_NAME]! Receive $10 from each player.", "J"),
-                                    new Card("Life Insurance Matures", "[DESCRIPTION]<br/>Your life insurance has matured. Receive $100, [PLAYER_NAME].", "K"),
-                                    new Card("Pay Hospital Fees", "[DESCRIPTION]<br/>Looks like someone had an accident. Pay $100, [PLAYER_NAME].", "L"),
-                                    new Card("Pay School Fees", "[DESCRIPTION]<br/>Education is very important. Pay $150, [PLAYER_NAME].", "M"),
-                                    new Card("Receives Consultancy Fee", "[DESCRIPTION]<br/>Receive $25, [PLAYER_NAME].", "N"),
-                                    new Card("You Are Assessed For Street Repairs", "[DESCRIPTION]<br/>Street repair time, [PLAYER_NAME]. $25 per house, $115 per hotel.", "O"),
-                                    new Card("You Have Won Second Prize In A Beauty Contest", "[DESCRIPTION]<br/>Only second place? [PLAYER_NAME] receives $10 for trying.", "P"),
-                                    new Card("You Inherit Money", "[DESCRIPTION]<br/>[PLAYER_NAME] inherits $100.", "Q")};
+    Card communityChestCards[] = {  new Card("Advance To Go", "[DESCRIPTION]<br/>[PLAYER_NAME] has advanced to go and collected $200.", "A", "Player who drew this card goes directly to GO (Property #1)."),
+                                    new Card("Bank Error In Your Favor", "[DESCRIPTION]<br/>A bank error has occured in your favor! Collect $200, [PLAYER_NAME].", "B", "Player who drew this card receives $200."),
+                                    new Card("Doctor's Fee", "[DESCRIPTION]<br/>Oh no! You have to pay a doctor's fee! Pay the doctor $50, [PLAYER_NAME].", "C", "Player who drew this card must pay $50."),
+                                    new Card("From Sale of Stock", "[DESCRIPTION]<br/>Gain $50, [PLAYER_NAME].", "D", "Player who drew this card receives $50."),
+                                    new Card("Get Out Of Jail Free Card", "[DESCRIPTION]<br/>[PLAYER_NAME] has received a get out of jail free card! WOO!", "E", "Player who drew this card receives a get out of jail free card."),
+                                    new Card("Go To Jail", "[DESCRIPTION]<br/>Head right on over to the jail!", "F", "Player who drew this card goes directly to jail (Property #11)."),
+                                    new Card("Grand Opera Night", "[DESCRIPTION]<br/>Every player must purchase tickets. Each player must pay [PLAYER_NAME] $50.", "G", "Player who drew this card receives $50 from each other player."),
+                                    new Card("Holiday Fund Matures", "[DESCRIPTION]<br/>Holiday fund time, cheers! Receive $100, [PLAYER_NAME].", "H", "Player who drew this card receives $100."),
+                                    new Card("Income Tax Refund", "[DESCRIPTION]<br/>Income tax refund. Receive $20, [PLAYER_NAME].", "I", "Player who drew this card receives $20."),
+                                    new Card("It Is Your Birthday", "[DESCRIPTION]<br/>Happy birthday, [PLAYER_NAME]! Receive $10 from each player.", "J", "Player who drew this card receives $10 from each other player."),
+                                    new Card("Life Insurance Matures", "[DESCRIPTION]<br/>Your life insurance has matured. Receive $100, [PLAYER_NAME].", "K", "Player who drew this card receives $100."),
+                                    new Card("Pay Hospital Fees", "[DESCRIPTION]<br/>Looks like someone had an accident. Pay $100, [PLAYER_NAME].", "L", "Player who drew this card must pay $100."),
+                                    new Card("Pay School Fees", "[DESCRIPTION]<br/>Education is very important. Pay $150, [PLAYER_NAME].", "M", "Player who drew this card must pay $150."),
+                                    new Card("Receives Consultancy Fee", "[DESCRIPTION]<br/>Receive $25, [PLAYER_NAME].", "N", "Player who drew this card receives $25."),
+                                    new Card("You Are Assessed For Street Repairs", "[DESCRIPTION]<br/>Street repair time, [PLAYER_NAME]. $25 per house, $115 per hotel.", "O", "Player who drew this card must pay $25 per house (up to 3 houses) and $115 per hotel (up to 1 hotel)."),
+                                    new Card("You Have Won Second Prize In A Beauty Contest", "[DESCRIPTION]<br/>Only second place? [PLAYER_NAME] receives $10 for trying.", "P", "Player who drew this card receives $10."),
+                                    new Card("You Inherit Money", "[DESCRIPTION]<br/>[PLAYER_NAME] inherits $100.", "Q", "Player who drew this card receives $100.")};
 %>
 
 
@@ -116,6 +116,7 @@
             </canvas>
         </div>
         <div id="cardDescDialog" title="Card Description" class="hidden">
+            <p id="detailsParagraph"></p>
         </div>
         
         <div class="pageDiv">
@@ -200,7 +201,7 @@
                             <input id="chanceName<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=chanceCards[i].getName()%>" />
                             <input id="chanceLetter<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=chanceCards[i].getType()%>" disabled="disabled" />
                             <input id="chanceDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField marginLeft20px" placeholder="<%=chanceCards[i].getDescription()%>" />
-                            <button class="cardInfo">What Happens</button>
+                            <button class="cardInfo" onclick="showHint('<%=chanceCards[i].getDetails()%>')">What Happens</button>
                         </div>
                         <%
                             }
@@ -234,7 +235,7 @@
                             <input id="chestName<%=i%>" type="text" class="formTextField largeFormTextField marginLeft20px" placeholder="<%=communityChestCards[i].getName()%>" />
                             <input id="chestLetter<%=i%>" type="hidden" class="formTextField marginLeft20px" placeholder="<%=communityChestCards[i].getType()%>" disabled="disabled" />
                             <input id="chestDesc<%=i%>" type="text" class="formTextField veryLargeFormTextField marginLeft20px" title="<%=communityChestCards[i].getDescription()%>" placeholder="<%=communityChestCards[i].getDescription()%>" />
-                            <button class="cardInfo">What Happens</button>
+                            <button class="cardInfo" onclick="showHint('<%=communityChestCards[i].getDetails()%>')">What Happens</button>
                         </div>
                         <%
                             }

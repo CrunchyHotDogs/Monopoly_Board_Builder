@@ -144,7 +144,7 @@ function initializeElements() {
     $('#cardDescDialog').dialog({
         autoOpen: false,
         width: 400,
-        height: 300
+        height: 200
     });
     $('#boardMapDialog').dialog({
        autoOpen: false,
@@ -382,4 +382,9 @@ function drawRectangle(x, y, width, height) {
     mapCanvas.stroke();
     
     $('#boardMapDialog').dialog('open');
+}
+
+function showHint(details) {
+    $('#detailsParagraph').html(details);
+    $('#cardDescDialog').dialog('open');
 }
