@@ -325,7 +325,7 @@ function retrieveBoardName() {
     //
     
     if (imageFLAG === true) {
-        ajaxCall();  
+        ajaxImageCall();  
     }
     else {
         board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
