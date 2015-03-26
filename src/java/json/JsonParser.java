@@ -77,11 +77,84 @@ public class JsonParser {
         return completeJson.toString();
     }
     
-    public static Property parseProperty(String jsonString) {
-        return new Property();
+    public static boolean validJsonCheck(JsonObject json) {
+        boolean validFLAG = true;
+        int Counter = 0;
+        String errorMessage = "";
+        
+        JsonArray properties = json.getJsonArray("property");
+        JsonArray chanceCards = json.getJsonArray("chanceCard");
+        JsonArray communutyCards = json.getJsonArray("communityChest");
+        JsonArray boardInfo = json.getJsonArray("board");
+        
+        try {
+            for (int i = 0; i < properties.size(); i++) {
+                JsonObject objects = properties.getJsonObject(i);
+                if (chkS(objects, "name") && chkS(objects, "tax") && chkS(objects, "house") && chkS(objects, "cost") && chkS(objects, "type")) {
+                    Counter += 1;
+                }
+            }
+            if (Counter != 40) {
+                errorMessage += "Problem with the properties!\n";
+                validFLAG = false;
+            } 
+            
+            
+            Counter = 0;
+            for (int i = 0; i < chanceCards.size(); i++) {
+                JsonObject objects = chanceCards.getJsonObject(i);
+                if (chkS(objects, "name") && chkS(objects, "description") && chkS(objects, "type")) {
+                    Counter += 1;
+                }
+            }
+            if (Counter != 16) {
+                errorMessage += "Problem with the chance cards!\n";
+                validFLAG = false;
+            }
+            
+            
+            Counter = 0;
+            for (int i = 0; i < communutyCards.size(); i++) {
+                JsonObject objects = communutyCards.getJsonObject(i);
+                if (chkS(objects, "name") && chkS(objects, "description") && chkS(objects, "type")) {
+                    Counter += 1;
+                }
+            }
+            if (Counter != 17) {
+                errorMessage += "Problem with the community chest cards!\n";
+                validFLAG = false;
+            }
+            
+            Counter = 0;
+            for (int i = 0; i < boardInfo.size(); i++) {
+                JsonObject objects = boardInfo.getJsonObject(i);
+                if (chkS(objects, "name") && chkS(objects, "url")) {
+                    Counter += 1;
+                }
+            }
+            if (Counter != 1) {
+                errorMessage += "Problem with the board info!\n";
+                validFLAG = false;
+            }
+        }
+        catch (NullPointerException ex) {
+            System.out.println("Oh no! An Error! " + ex.getMessage());
+            validFLAG = false;
+        }
+        
+        System.out.println(errorMessage);
+        return validFLAG;
     }
     
-    public static Card parseCard(String jsonString) {
-        return new Card();
+    /**
+     * Simple method to determine if the variable is part of the JsonObject. Checks for strings.
+     * @param objects The json object to check in.
+     * @param string The variable to look for.
+     * @return Returns true if the variable is in the json object.
+     * @throws NullPointerException 
+     */
+    private static boolean chkS(JsonObject objects, String string) throws NullPointerException {
+        String str = objects.getString(string);
+        return true;
     }
 }
