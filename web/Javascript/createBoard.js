@@ -90,11 +90,21 @@ function initializeElements() {
         
         if(F && F[0]) {
             for (var i = 0; i < F.length; i++) { 
-                readImage( F[i] );
+                readImage(F[i]);
             } 
         }
+        
+        var file = e.target.files[0],
+            imageType = /image.*/;
+        
+        if (!file.type.match(imageType))
+            return;
+        
+        var reader = new FileReader();
+        reader.onload = fileOnload;
+        reader.readAsDataURL(file); 
     });
-    
+   
     $('#propertyNextButton').click(function () {
         retrievePropertyInfo();
         showNextTab('formChance', 'chanceTab');
@@ -117,18 +127,6 @@ function initializeElements() {
     });
     
     
-    $('#myFile').change(function(e) {
-        var file = e.target.files[0],
-            imageType = /image.*/;
-        
-        if (!file.type.match(imageType))
-            return;
-        
-        var reader = new FileReader();
-        reader.onload = fileOnload;
-        reader.readAsDataURL(file);
-        
-    });
     $('#previewImageButton').click(function() {
         $('#imageDialog').dialog('open');
     });
