@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- *
+ * A simple object that is used to retrieve database connections.
  * @author Kyle
  */
 public class Credentials {

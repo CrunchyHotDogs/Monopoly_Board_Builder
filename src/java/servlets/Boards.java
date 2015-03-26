@@ -15,11 +15,17 @@ import javax.ws.rs.core.Response;
 import json.JsonParser;
 
 /**
- *
+ * RESTFul webservice for uploading and retrieving the boards.
  * @author Kyle
  */
+
 @Path("/boardUpload")
 public class Boards {
+    /**
+     * Get the json for a specific board.
+     * @param id The id of the board being retrieved.
+     * @return A response from the server containing the json data.
+     */
     @GET
     @Path("{id}")
     @Produces("application/json")
@@ -53,6 +59,10 @@ public class Boards {
         return Response.ok(returnString).build();
     }
     
+    /**
+     * Gets a json object for all of the boards. Only contains the id and name.
+     * @return A response from the server containing an json string for the boards.
+     */
     @GET
     @Produces("application/json")
     public Response getAllBoards() {
@@ -69,6 +79,11 @@ public class Boards {
         return Response.ok(returnString).build();
     }
     
+    /**
+     * Tries to upload a board to the database.
+     * @param boardJson A string containing all of the json required for the board.
+     * @return A response saying it failed or was ok.
+     */
     @POST
     @Consumes("application/json")
     public Response uploadBoard(String boardJson) {
@@ -174,6 +189,12 @@ public class Boards {
         return Response.ok().build();
     }
     
+    /**
+     * Tries to update the name of a board.
+     * @param board A json string containing the id and the name of a board that is 
+     * going to be updated.
+     * @return A response saying ok or failed.
+     */
     @PUT
     @Consumes("application/json")
     public Response updateBoard(String board) {
@@ -198,6 +219,11 @@ public class Boards {
         return Response.ok().build();
     }
     
+    /**
+     * Tries to delete a board out of the database.
+     * @param id The id of the board going to be deleted.
+     * @return A response saying if this failed or was ok.
+     */
     @DELETE
     @Path("{id}")
     public Response deleteBoard(@PathParam("id") int id) {

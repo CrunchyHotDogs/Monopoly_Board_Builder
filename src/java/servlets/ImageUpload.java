@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 /**
- *
+ * A webservice used to upload an image to the server.
  * @author Kyle
  */
 @WebServlet("/imageUpload")
@@ -31,6 +31,13 @@ import javax.servlet.http.Part;
 public class ImageUpload extends HttpServlet {
     private static final String directoryPath = "Gameboards";
     
+    /**
+     * Tries to write the image onto the server.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
         String fileName;
@@ -75,8 +82,6 @@ public class ImageUpload extends HttpServlet {
                     writer.close();
                 }
             }
-            
-            
         }
     }
 }

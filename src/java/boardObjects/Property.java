@@ -1,7 +1,7 @@
 package boardObjects;
 
 /**
- *
+ * A simple object used to hold the placeholder info about each property.
  * @author Kyle
  */
 public class Property {
