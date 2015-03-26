@@ -13,6 +13,7 @@ $(document).ready(function() {
         }
     });
     
+    //Gets all of the boards in the database, and displays them. Adds onclick listeners for the buttons involving each board.
     var getBoards = function() {
                     $.getJSON("./boards/boardUpload", function(data) {
                         $('#viewBoardsDiv').html('');
@@ -25,6 +26,7 @@ $(document).ready(function() {
                             jsonObject.id = $(this).closest("div").find(".hiddenId").val();;
                             jsonObject.name = $(this).closest("div").find(".boardNameValue").val();
                             
+                            //Tries to update the boards name.
                             $.ajax({
                                 url: "./boards/boardUpload",
                                 headers: { 
@@ -38,12 +40,12 @@ $(document).ready(function() {
                                 },
                                 error: function (data) {
                                     fadeImage('#errorImage');
-                                    console.log(data);
                                 }
                             });
                         });
                         $('.deleteButton').click(function() {
                             var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
+                            //Tries to delete a board.
                             $.ajax({
                                url: url,
                                method: "DELETE",
@@ -59,6 +61,7 @@ $(document).ready(function() {
                         });
                         $('.exportJsonButton').click(function() {
                             var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
+                            //Tries to export the json for a board.
                             $.ajax({
                                 url: url,
                                 method: "GET",
@@ -70,11 +73,11 @@ $(document).ready(function() {
                         });
                     });
                 };
-                
+            
     getBoards();
-    
 });
 
+//Insert a div containing the board and buttons.
 function insertDiv(boardId, boardName) {
     var HTMLObject = '';
     
@@ -89,6 +92,7 @@ function insertDiv(boardId, boardName) {
     $('#viewBoardsDiv').append(HTMLObject);
 }
 
+//Shows and hides an image based on if the action was successful or not.
 function fadeImage(id) {
     $(id).fadeIn(0).fadeOut(1000);
 }

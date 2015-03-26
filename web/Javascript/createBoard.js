@@ -12,12 +12,14 @@ var board = new Board();
 var imageFLAG = true;
 var formData;
 
+//Sets the first tab to be visible once the page loads.
 $(document).ready(function () {
     showNextTab('formProperty', 'propertyTab');
      
     initializeElements();
 });
 
+//When an image is placed into the input, check to see if it is valid.
 function readImage(file) {
     var reader = new FileReader();
     var image  = new Image();
@@ -28,23 +30,23 @@ function readImage(file) {
         image.onload = function() {
             var errorMessage = "";
         
+            //Checks to see if the image is 800px wide.
             if (this.width !== 800) {
                 errorMessage += "Picture must be 800px wide.\n";
             }
+            //Checks to see if the image is 800px high.
             if (this.height !== 800) {
                 errorMessage += "Picture must be 800px high.\n";
             }
+            //Checks to see if the image is jpg.
             if (file.type !== "image/jpeg") {
                 errorMessage += "Picture must be of the jpg/jpeg format.\n";
             }
             
+            //If there was any errors, show them to the user.
             if (errorMessage.length > 0) {
-                //$('#imageNextButton').prop('disabled', true);
                 $('#errorMessage').html(errorMessage);
                 $('#imageUploadDialog').dialog('open');
-            }
-            else {
-                //$('#imageNextButton').prop('disabled', false);
             }
         };
         image.onerror = function() {
@@ -53,6 +55,8 @@ function readImage(file) {
     };
 }
 
+//When the user uploads an image to the input, load the image they uploaded 
+//into a canvas so they can preview it.
 function fileOnload(e) {
     var $img = $('<img>', { src: e.target.result });
     var canvas = $('#imageCanvas')[0];
@@ -63,6 +67,8 @@ function fileOnload(e) {
     });
 }
 
+//Shows the next form, and hides the rest of the forms.
+//Switches which tab is selected.
 function showNextTab(nextForm, nextTab) {
     $('#forms').find("div[id^='form']").each(function (index, element) {
        $(this).hide();
@@ -80,6 +86,7 @@ function showNextTab(nextForm, nextTab) {
     window.scrollTo(0, 0);
 }
 
+//Initialize all of the onclicks, dialogs, and input changes.
 function initializeElements() {
     $("#myFile").change(function (e) {
         if (this.disabled) {
@@ -151,14 +158,22 @@ function initializeElements() {
     });
 }
 
+//Retrieves all of the info out of property form and builds a JsonArray out of the info.
 function retrievePropertyInfo() {
     var properties = [];
         
+    //Loops through all of the input sections.
     $('#formProperty').find('div.oneProperty').each(function (index, element) {
+        //Creates a new property for each input section.
         properties[index] = new Property();
         
+        //Loops through each of the inputs in the input section.
         $(this).find('input').each(function (innerIndex, innerElement) {
+            //Checks what input is being looked at.
+            //If the info the user inputted is incorrectly formatted or the wrong type
+            //use the placeholder value instead.
             switch (innerIndex) {
+                //The properties name.
                 case 0:
                     if ($(this).val() !== "") {
                         properties[index].setName($(this).val());
@@ -167,6 +182,7 @@ function retrievePropertyInfo() {
                         properties[index].setName($(this).attr('placeholder'));
                     }
                     break;
+                //The properties tax.
                 case 1:
                     var regex = new RegExp("^\d*[0-9](,\d*[0-9]){5}$");
                     if ($(this).val() !== "" && regex.test($(this).val())) {
@@ -176,6 +192,7 @@ function retrievePropertyInfo() {
                         properties[index].setTax($(this).attr('placeholder')); 
                     }
                     break;
+                //The properties cost.
                 case 2:
                     if ($(this).val() !== "" && $.isNumeric($(this).val())) {
                         properties[index].setCost($(this).val());
@@ -184,6 +201,7 @@ function retrievePropertyInfo() {
                         properties[index].setCost($(this).attr('placeholder'));
                     }
                     break;
+                //The properties house cost.
                 case 3:
                     if ($(this).val() !== "" && $.isNumeric($(this).val())) {
                         properties[index].setHouse($(this).val());
@@ -192,24 +210,28 @@ function retrievePropertyInfo() {
                         properties[index].setHouse($(this).attr('placeholder'));
                     }
                     break;
+                //The properties type.
                 case 4:
                     properties[index].setType($(this).attr('placeholder'));
                     break;
             }
         });
     });
-    
+    //Starts the properties JsonArray.
     jsonObject += "\"property\" : [";
     
+    //Loops through all of the properties and build JsonObjects for them.
     for (var i = 0; i < properties.length; i++) {
         jsonObject += properties[i].toJson();
         if (i !== (properties.length - 1)) {
             jsonObject += ",";
         }
     }
+    //End the properties JsonArray.
     jsonObject += "],";
 }
 
+//Retrieves all of the info out of the chance card form and builds a JsonArray out of the info.
 function retrieveChanceInfo() {
     var chanceCards = [];
     
@@ -252,6 +274,7 @@ function retrieveChanceInfo() {
     jsonObject += "],";
 }
 
+//Retrieves all of the info out of the community chest card form and builds a JsonArray out of the info.
 function retrieveCommunityChestInfo() {
     var communityChest = [];
     
@@ -294,6 +317,7 @@ function retrieveCommunityChestInfo() {
     jsonObject += "],";
 }
 
+//Checks to see if the user inserted an image. If they did add it to the FormData.
 function retrieveImage() {
     var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
@@ -309,6 +333,7 @@ function retrieveImage() {
     }
 }
 
+//Retrieves the board name and uploads the board to the database.
 function retrieveBoardName() {
     if ($('#boardName').val() !== "") {
         board.setName($('#boardName').val());
@@ -317,20 +342,18 @@ function retrieveBoardName() {
         board.setName($('#boardName').attr('placeholder'));
     }
     
-    
-    //Will be moving everything into the success portion of the image upload. The image upload will return a random string that will be
-    //used to set the image url.
-    //
-    
+    //If the user did upload an image, try to upload the image to the server.
     if (imageFLAG === true) {
         ajaxImageCall();  
     }
     else {
+        //Set the image url to the default game board and skip trying to upload the image.
         board.setUrl(location.href.substring(0, location.href.lastIndexOf("/")+1) + "Gameboards/Gameboard.jpg");
         ajaxBoardInfoCall();
     }
 }
 
+//Tries to upload the image to the server.
 function ajaxImageCall() {
     $.ajax({
         type: 'POST',
@@ -350,6 +373,7 @@ function ajaxImageCall() {
     ajaxBoardInfoCall();
 }
 
+//Creates the JsonArray for the board and tries to upload the board to the database.
 function ajaxBoardInfoCall() {
     jsonObject += "\"board\" : [";
     jsonObject += board.toJson();
@@ -367,21 +391,27 @@ function ajaxBoardInfoCall() {
     });
 }
 
+//Draws a rectangle over a default game board, showing where each property is.
+//Called from a button click to show that properties location.
 function drawRectangle(x, y, width, height) {
     var c = document.getElementById("mapCanvas");
     var mapCanvas = c.getContext('2d');
     
+    //Clear the board of all other rectangles.
     mapCanvas.clearRect(0, 0, 450, 450);
     
+    //Draws the rectangle.
     mapCanvas.beginPath();
     mapCanvas.strokeStyle = 'red';
     mapCanvas.lineWidth = 5;
     mapCanvas.rect(x, y, width, height);
     mapCanvas.stroke();
     
+    //Open the dialog box.
     $('#boardMapDialog').dialog('open');
 }
 
+//Shows a hint for what each card does.
 function showHint(details) {
     $('#detailsParagraph').html(details);
     $('#cardDescDialog').dialog('open');

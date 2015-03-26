@@ -26,7 +26,7 @@ $(document).ready(function() {
         autoOpen: false
     });
     
-    
+    //Tries to insert the board into the database.
     $('#importJsonSubmit').click(function() {
         var jsonObject = $('#importJsonTextArea').val();
         $.ajax({
@@ -48,6 +48,7 @@ $(document).ready(function() {
     });
 });
 
+//Checks to see if the image is valid, and if it is upload it to the server and show the url to the user.
 function readImage(file) {
     var reader = new FileReader();
     var image  = new Image();
@@ -84,6 +85,7 @@ function readImage(file) {
     };
 }
 
+//Gets the image out of the input field.
 function retrieveImage() {
     var fileSelect = document.getElementById('myFile');
     var files = fileSelect.files;
@@ -96,6 +98,7 @@ function retrieveImage() {
     }
 }
 
+//Uploads the image to the server.
 function uploadImage() {
     var imageUrl = "";
     $.ajax({
@@ -116,6 +119,7 @@ function uploadImage() {
     return imageUrl;
 }
 
+//Shows and hides an image based on if the action was successful or not.
 function fadeImage(id) {
     $(id).fadeIn(0).fadeOut(1000);
 }
