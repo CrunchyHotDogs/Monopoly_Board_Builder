@@ -107,7 +107,7 @@ function uploadImage() {
         contentType: false,
         processData: false,
         success: function (data) {
-            imageUrl = "http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + data;
+            imageUrl = location.href.substring(0, location.href.lastIndexOf("/")+1) + "Gameboards/" + data;
         },
         error: function() {
             imageUrl = "FAILED UPLOAD";

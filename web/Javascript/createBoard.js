@@ -326,7 +326,7 @@ function retrieveBoardName() {
         ajaxImageCall();  
     }
     else {
-        board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
+        board.setUrl(location.href.substring(0, location.href.lastIndexOf("/")+1) + "Gameboards/Gameboard.jpg");
         ajaxBoardInfoCall();
     }
 }
@@ -341,10 +341,10 @@ function ajaxImageCall() {
         contentType: false,
         processData: false,
         success: function (data) {
-            board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/" + data);
+            board.setUrl(location.href.substring(0, location.href.lastIndexOf("/")+1) + "Gameboards/" + data);
         },
         error: function() {
-            board.setUrl("http://localhost:8080/MonopolyBoardBuilder/Gameboards/Gameboard.jpg");
+            board.setUrl(location.href.substring(0, location.href.lastIndexOf("/")+1) + "Gameboards/Gameboard.jpg");
         }
     });  
     ajaxBoardInfoCall();
