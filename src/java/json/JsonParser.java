@@ -1,7 +1,5 @@
 package json;
 
-import boardObjects.Card;
-import boardObjects.Property;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.json.Json;
@@ -11,10 +9,22 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 /**
- *
+ * A static class that is used to either return json, check json, or parse through json.
  * @author Kyle
- */
+*/
+
+
 public class JsonParser {
+    
+    /**
+     * Runs through all of the info about a board and return a complete json object for that board.
+     * @param board A result set of the board info (board name and image url).
+     * @param property A result set of the properties.
+     * @param chance A result set of the chance cards.
+     * @param communty A result set of the community chest cards.
+     * @return A json object represented as a string.
+     * @throws SQLException 
+     */
     public static String getSpecificBoardJson(ResultSet board, ResultSet property, ResultSet chance, ResultSet communty) throws SQLException {
         JsonArrayBuilder jsonArray = Json.createArrayBuilder();
         JsonObjectBuilder singleJson = Json.createObjectBuilder();
@@ -77,6 +87,13 @@ public class JsonParser {
         return completeJson.toString();
     }
     
+    /**
+     * Runs through a JsonObject and checks to see if it is valid according to the
+     * format used for boards. Must have 40 properties, 16 chance cards, 17 community
+     * chest cards, and the board info.
+     * @param json The JsonObject used to hold the board json.
+     * @return A true or false value saying if the json is valid.
+     */
     public static boolean validJsonCheck(JsonObject json) {
         boolean validFLAG = true;
         int Counter = 0;
