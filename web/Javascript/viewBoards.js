@@ -16,61 +16,68 @@ $(document).ready(function() {
     //Gets all of the boards in the database, and displays them. Adds onclick listeners for the buttons involving each board.
     var getBoards = function() {
                     $.getJSON("./boards/boardUpload", function(data) {
+                        var Counter = 0;
                         $('#viewBoardsDiv').html('');
                         for (var i = 0; i < data.length; i++) {
                             insertDiv(data[i].id, data[i].name);
+                            Counter += 1;
                         }
                         
-                        $('.saveNameButton').click(function() {
-                            var jsonObject = new Object();
-                            jsonObject.id = $(this).closest("div").find(".hiddenId").val();;
-                            jsonObject.name = $(this).closest("div").find(".boardNameValue").val();
-                            
-                            //Tries to update the boards name.
-                            $.ajax({
-                                url: "./boards/boardUpload",
-                                headers: { 
-                                    'Content-Type': 'application/json' 
-                                },
-                                method: "PUT",
-                                data: JSON.stringify(jsonObject),
-                                success: function() {
-                                    fadeImage('#successImage');
-                                    getBoards();
-                                },
-                                error: function (data) {
-                                    fadeImage('#errorImage');
-                                }
+                        if (Counter > 0) {
+                            $('.saveNameButton').click(function() {
+                                var jsonObject = new Object();
+                                jsonObject.id = $(this).closest("div").find(".hiddenId").val();;
+                                jsonObject.name = $(this).closest("div").find(".boardNameValue").val();
+
+                                //Tries to update the boards name.
+                                $.ajax({
+                                    url: "./boards/boardUpload",
+                                    headers: { 
+                                        'Content-Type': 'application/json' 
+                                    },
+                                    method: "PUT",
+                                    data: JSON.stringify(jsonObject),
+                                    success: function() {
+                                        fadeImage('#successImage');
+                                        getBoards();
+                                    },
+                                    error: function (data) {
+                                        fadeImage('#errorImage');
+                                    }
+                                });
                             });
-                        });
-                        $('.deleteButton').click(function() {
-                            var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
-                            //Tries to delete a board.
-                            $.ajax({
-                               url: url,
-                               method: "DELETE",
-                               success: function() {
-                                   fadeImage('#successImage');
-                                   getBoards();
-                               },
-                               error: function(data) {
-                                   fadeImage('#errorImage');
-                                   console.log(data);
-                               }
+                            $('.deleteButton').click(function() {
+                                var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
+                                //Tries to delete a board.
+                                $.ajax({
+                                   url: url,
+                                   method: "DELETE",
+                                   success: function() {
+                                       fadeImage('#successImage');
+                                       getBoards();
+                                   },
+                                   error: function(data) {
+                                       fadeImage('#errorImage');
+                                       console.log(data);
+                                   }
+                                });
                             });
-                        });
-                        $('.exportJsonButton').click(function() {
-                            var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
-                            //Tries to export the json for a board.
-                            $.ajax({
-                                url: url,
-                                method: "GET",
-                                success: function(data) {
-                                    $('#exportJsonTextArea').val(JSON.stringify(data));
-                                    $('#exportJsonDialog').dialog('open');
-                                }
+                            $('.exportJsonButton').click(function() {
+                                var url = "./boards/boardUpload/" + $(this).closest("div").find(".hiddenId").val();
+                                //Tries to export the json for a board.
+                                $.ajax({
+                                    url: url,
+                                    method: "GET",
+                                    success: function(data) {
+                                        $('#exportJsonTextArea').val(JSON.stringify(data));
+                                        $('#exportJsonDialog').dialog('open');
+                                    }
+                                });
                             });
-                        });
+                        }
+                        else {
+                            $('#viewBoardsDiv').append('<p class="infoLabel marginLeft20px">Sorry, there are no boards in the database currently.</p>');
+                        }
                     });
                 };
             
