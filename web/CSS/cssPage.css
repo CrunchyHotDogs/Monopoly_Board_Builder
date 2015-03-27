@@ -27,7 +27,7 @@ and open the template in the editor.
     background: #222640;   
 }
 .buttonDiv {
-    margin: 0 auto;
+    margin: 0;
     width: 25%;
 }
 .pageDiv {
@@ -104,6 +104,10 @@ and open the template in the editor.
 .veryLargeFormTextField {
     width: 500px;
 }
+.mainPageButtonRow {
+    width: 800px; 
+    margin: 25px 65px;
+}
 .cardInfo {
     font-size: 1em;
     text-transform: uppercase;
@@ -157,7 +161,7 @@ and open the template in the editor.
     top: 5px;
 }
 .mainPageButtons {
-    width: 250px;
+    width: 350px;
     margin: 0 auto 5px auto;
 }
 .mainPageDiv {

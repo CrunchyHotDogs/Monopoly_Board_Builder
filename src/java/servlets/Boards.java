@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -21,6 +23,10 @@ import json.JsonParser;
 
 @Path("/boardUpload")
 public class Boards {
+    
+    @Resource
+    ManagedScheduledExecutorService executor;
+    
     /**
      * Get the json for a specific board.
      * @param id The id of the board being retrieved.
@@ -57,6 +63,7 @@ public class Boards {
         }
         
         return Response.ok(returnString).build();
+                
     }
     
     /**
