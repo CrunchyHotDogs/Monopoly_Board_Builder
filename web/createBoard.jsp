@@ -151,7 +151,7 @@
                             </span>
                             <span class="propertyHeader smallHeader">
                                 Cost  
-                                <span class="pointerCursor" title="The cost that the property will be in order to buy it.">
+                                <span class="pointerCursor" title="The cost that the property will be in order to buy it. When the property is a tax (Income or Luxury Tax), the cost represents how much the player who lands on this space must pay.">
                                     &ofcir;
                                 </span>
                             </span>
