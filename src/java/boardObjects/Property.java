@@ -26,7 +26,7 @@ public class Property {
         this.height = 0;
     }
     
-    public Property(String name, int[] tax, int house, int cost, String type) {
+    public Property(String name, int[] tax, int cost, int house, String type) {
         this.name = name;
         this.tax = tax;
         this.house = house;
@@ -38,7 +38,7 @@ public class Property {
         this.height = 0;
     }
 
-    public Property(String name, int[] tax, int house, int cost, String type, int x, int y, int width, int height) {
+    public Property(String name, int[] tax, int cost, int house, String type, int x, int y, int width, int height) {
         this.name = name;
         this.tax = tax;
         this.house = house;
