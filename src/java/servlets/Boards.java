@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
+import javax.enterprise.context.ApplicationScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -24,6 +26,7 @@ import json.JsonParser;
  */
 
 @Path("/boardUpload")
+@ApplicationScoped
 public class Boards {
     
     @Resource
@@ -37,34 +40,41 @@ public class Boards {
     @GET
     @Path("{id}")
     @Produces("application/json")
-    public Response getSpecificBoard(@PathParam("id") int id) {
-        String returnString = "";
-        
-        try (Connection conn = credentials.Credentials.getConnection()) {
-            ResultSet rsBoard, rsProp, rsChance, rsCommunity;
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM board WHERE board_id = ?;");
-            pstmt.setInt(1, id);
-            rsBoard = pstmt.executeQuery();
-            
-            pstmt = conn.prepareStatement("SELECT * FROM property WHERE board_id = ?");
-            pstmt.setInt(1, id);
-            rsProp = pstmt.executeQuery();
-            
-            pstmt = conn.prepareStatement("SELECT * FROM chance WHERE board_id = ?");
-            pstmt.setInt(1, id);
-            rsChance = pstmt.executeQuery();
-            
-            pstmt = conn.prepareStatement("SELECT * FROM communitychest WHERE board_id = ?");
-            pstmt.setInt(1, id);
-            rsCommunity = pstmt.executeQuery();
-            
-            returnString = JsonParser.getSpecificBoardJson(rsBoard, rsProp, rsChance, rsCommunity);
-        }
-        catch (SQLException ex) {
-            return Response.status(500).build();
-        }
-        
-        return Response.ok(returnString).build();
+    public Response getSpecificBoard(@PathParam("id") int id) throws InterruptedException, ExecutionException {
+        Future<Response> f = executor.submit(new Callable() {
+
+            @Override
+            public Response call() throws Exception {
+                String returnString = "";
+
+                try (Connection conn = credentials.Credentials.getConnection()) {
+                    ResultSet rsBoard, rsProp, rsChance, rsCommunity;
+                    PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM board WHERE board_id = ?;");
+                    pstmt.setInt(1, id);
+                    rsBoard = pstmt.executeQuery();
+
+                    pstmt = conn.prepareStatement("SELECT * FROM property WHERE board_id = ?");
+                    pstmt.setInt(1, id);
+                    rsProp = pstmt.executeQuery();
+
+                    pstmt = conn.prepareStatement("SELECT * FROM chance WHERE board_id = ?");
+                    pstmt.setInt(1, id);
+                    rsChance = pstmt.executeQuery();
+
+                    pstmt = conn.prepareStatement("SELECT * FROM communitychest WHERE board_id = ?");
+                    pstmt.setInt(1, id);
+                    rsCommunity = pstmt.executeQuery();
+
+                    returnString = JsonParser.getSpecificBoardJson(rsBoard, rsProp, rsChance, rsCommunity);
+                }
+                catch (SQLException ex) {
+                    return Response.status(500).build();
+                }
+
+                return Response.ok(returnString).build();
+            }
+        });
+        return f.get();
     }
     
     /**
