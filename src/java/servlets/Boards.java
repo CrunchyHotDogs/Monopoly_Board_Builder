@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.context.ApplicationScoped;
@@ -40,7 +42,7 @@ public class Boards {
     @GET
     @Path("{id}")
     @Produces("application/json")
-    public Response getSpecificBoard(@PathParam("id") int id) throws InterruptedException, ExecutionException {
+    public Response getSpecificBoard(@PathParam("id") int id) {
         Future<Response> f = executor.submit(new Callable() {
 
             @Override
@@ -74,7 +76,14 @@ public class Boards {
                 return Response.ok(returnString).build();
             }
         });
-        return f.get();
+        try {
+            return f.get();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Response.status(500).build();
     }
     
     /**
@@ -84,17 +93,30 @@ public class Boards {
     @GET
     @Produces("application/json")
     public Response getAllBoards() {
-        String returnString;
-        try (Connection conn = credentials.Credentials.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
-            
-            returnString = JsonParser.getAllBoards(pstmt.executeQuery());
+        Future<Response> f = executor.submit(new Callable() {
+
+            @Override
+            public Response call() throws Exception {
+                String returnString;
+                try (Connection conn = credentials.Credentials.getConnection()) {
+                    PreparedStatement pstmt = conn.prepareStatement("SELECT board_id, board_name FROM board;");
+
+                    returnString = JsonParser.getAllBoards(pstmt.executeQuery());
+                }
+                catch(SQLException ex) {
+                    return Response.status(500).build();
+                }
+                return Response.ok(returnString).build();
+            }
+        });
+        try {
+            return f.get();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(SQLException ex) {
-            return Response.status(500).build();
-        }
-        
-        return Response.ok(returnString).build();
+        return Response.status(500).build();
     }
     
     /**
@@ -105,106 +127,120 @@ public class Boards {
     @POST
     @Consumes("application/json")
     public Response uploadBoard(String boardJson) {
-        int uniqueId;
+        Future<Response> f = executor.submit(new Callable() {
+
+            @Override
+            public Response call() throws Exception {
+                int uniqueId;
         
-        JsonReader reader = Json.createReader(new StringReader(boardJson));
-        JsonObject json = reader.readObject();
-        
-        JsonArray properties = json.getJsonArray("property");
-        JsonArray chanceCards = json.getJsonArray("chanceCard");
-        JsonArray communutyCards = json.getJsonArray("communityChest");
-        JsonArray boardInfo = json.getJsonArray("board");
-        
-        
-        //Insert Board Into Database
-        if (JsonParser.validJsonCheck(json)) {
-            try (Connection conn = credentials.Credentials.getConnection()) {
+                JsonReader reader = Json.createReader(new StringReader(boardJson));
+                JsonObject json = reader.readObject();
+
+                JsonArray properties = json.getJsonArray("property");
+                JsonArray chanceCards = json.getJsonArray("chanceCard");
+                JsonArray communutyCards = json.getJsonArray("communityChest");
+                JsonArray boardInfo = json.getJsonArray("board");
+
                 //Insert Board Into Database
-                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO board (board_name, image_url) VALUES (?, ?);",
-                                                                Statement.RETURN_GENERATED_KEYS);
+                if (JsonParser.validJsonCheck(json)) {
+                    try (Connection conn = credentials.Credentials.getConnection()) {
+                        //Insert Board Into Database
+                        PreparedStatement pstmt = conn.prepareStatement("INSERT INTO board (board_name, image_url) VALUES (?, ?);",
+                                                                        Statement.RETURN_GENERATED_KEYS);
 
-                pstmt.setString(1, boardInfo.getJsonObject(0).getString("name"));
-                pstmt.setString(2, boardInfo.getJsonObject(0).getString("url"));
+                        pstmt.setString(1, boardInfo.getJsonObject(0).getString("name"));
+                        pstmt.setString(2, boardInfo.getJsonObject(0).getString("url"));
 
-                pstmt.executeUpdate();
+                        pstmt.executeUpdate();
 
-                ResultSet keys = pstmt.getGeneratedKeys();
-                if (keys.next()) {
-                    uniqueId = keys.getInt(1);
+                        ResultSet keys = pstmt.getGeneratedKeys();
+                        if (keys.next()) {
+                            uniqueId = keys.getInt(1);
+                        }
+                        else {
+                            uniqueId = -1;
+                        }
+
+                        if (uniqueId != -1) {
+                            //Insert Properties For That Board
+                            for (int i = 0; i < properties.size(); i++) {
+                                JsonObject objects = properties.getJsonObject(i);
+                                String name = objects.getString("name");
+                                String tax = objects.getString("tax");
+                                int house = Integer.parseInt(objects.getString("house"));
+                                int cost = Integer.parseInt(objects.getString("cost"));
+                                String type = objects.getString("type");
+
+                                pstmt = conn.prepareStatement("INSERT INTO property (property_id, name, tax, house_cost, cost, type, board_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+
+                                pstmt.setInt(1, i);
+                                pstmt.setString(2, name);
+                                pstmt.setString(3, tax);
+                                pstmt.setInt(4, house);
+                                pstmt.setInt(5, cost);
+                                pstmt.setString(6, type);
+                                pstmt.setInt(7, uniqueId);
+
+                                pstmt.execute();
+                            }
+
+                            //Insert Chance Cards For That Board
+                            for (int i = 0; i < chanceCards.size(); i++) {
+                                JsonObject objects = chanceCards.getJsonObject(i);
+                                String name = objects.getString("name");
+                                String description = objects.getString("description");
+                                String type = objects.getString("type");
+
+                                pstmt = conn.prepareStatement("INSERT INTO chance (chance_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
+
+                                pstmt.setInt(1, i);
+                                pstmt.setString(2, name);
+                                pstmt.setString(3, description);
+                                pstmt.setString(4, type);
+                                pstmt.setInt(5, uniqueId);
+
+                                pstmt.execute();
+                            }
+
+                            //Insert Community Chest Cards For That Board
+                            for (int i = 0; i < communutyCards.size(); i++) {
+                                JsonObject objects = communutyCards.getJsonObject(i);
+                                String name = objects.getString("name");
+                                String description = objects.getString("description");
+                                String type = objects.getString("type");
+
+                                pstmt = conn.prepareStatement("INSERT INTO communitychest (chest_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
+
+                                pstmt.setInt(1, i);
+                                pstmt.setString(2, name);
+                                pstmt.setString(3, description);
+                                pstmt.setString(4, type);
+                                pstmt.setInt(5, uniqueId);
+
+                                pstmt.execute();
+                            }
+                        }
+                    }
+                    catch (SQLException | NumberFormatException ex) {
+                        System.out.println(ex.getMessage());
+                        return Response.status(500).build();
+                    }
                 }
                 else {
-                    uniqueId = -1;
+                    return Response.status(500).build();
                 }
-
-                if (uniqueId != -1) {
-                    //Insert Properties For That Board
-                    for (int i = 0; i < properties.size(); i++) {
-                        JsonObject objects = properties.getJsonObject(i);
-                        String name = objects.getString("name");
-                        String tax = objects.getString("tax");
-                        int house = Integer.parseInt(objects.getString("house"));
-                        int cost = Integer.parseInt(objects.getString("cost"));
-                        String type = objects.getString("type");
-                        
-                        pstmt = conn.prepareStatement("INSERT INTO property (property_id, name, tax, house_cost, cost, type, board_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
-
-                        pstmt.setInt(1, i);
-                        pstmt.setString(2, name);
-                        pstmt.setString(3, tax);
-                        pstmt.setInt(4, house);
-                        pstmt.setInt(5, cost);
-                        pstmt.setString(6, type);
-                        pstmt.setInt(7, uniqueId);
-
-                        pstmt.execute();
-                    }
-
-                    //Insert Chance Cards For That Board
-                    for (int i = 0; i < chanceCards.size(); i++) {
-                        JsonObject objects = chanceCards.getJsonObject(i);
-                        String name = objects.getString("name");
-                        String description = objects.getString("description");
-                        String type = objects.getString("type");
-
-                        pstmt = conn.prepareStatement("INSERT INTO chance (chance_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
-
-                        pstmt.setInt(1, i);
-                        pstmt.setString(2, name);
-                        pstmt.setString(3, description);
-                        pstmt.setString(4, type);
-                        pstmt.setInt(5, uniqueId);
-
-                        pstmt.execute();
-                    }
-
-                    //Insert Community Chest Cards For That Board
-                    for (int i = 0; i < communutyCards.size(); i++) {
-                        JsonObject objects = communutyCards.getJsonObject(i);
-                        String name = objects.getString("name");
-                        String description = objects.getString("description");
-                        String type = objects.getString("type");
-
-                        pstmt = conn.prepareStatement("INSERT INTO communitychest (chest_id, name, description, type, board_id) VALUES (?, ?, ?, ?, ?);");
-
-                        pstmt.setInt(1, i);
-                        pstmt.setString(2, name);
-                        pstmt.setString(3, description);
-                        pstmt.setString(4, type);
-                        pstmt.setInt(5, uniqueId);
-
-                        pstmt.execute();
-                    }
-                }
+                return Response.ok().build();
             }
-            catch (SQLException | NumberFormatException ex) {
-                System.out.println(ex);
-                return Response.status(500).build();
-            }
+        });
+        try {
+            return f.get();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else {
-            return Response.status(500).build();
-        }
-        return Response.ok().build();
+        
+        return Response.status(500).build();
     }
     
     /**
@@ -216,25 +252,38 @@ public class Boards {
     @PUT
     @Consumes("application/json")
     public Response updateBoard(String board) {
-        JsonReader reader = Json.createReader(new StringReader(board));
-        JsonObject json = reader.readObject();
-        
-        
-        try (Connection conn = credentials.Credentials.getConnection()) {
-            String id = json.getString("id");
-            String name = json.getString("name");
-        
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE board SET board_name = ? WHERE board_id = ?;");
-            pstmt.setString(1, name);
-            pstmt.setInt(2, Integer.parseInt(id));
-            
-            pstmt.execute();
+        Future<Response> f = executor.submit(new Callable() {
+
+            @Override
+            public Response call() throws Exception {
+                JsonReader reader = Json.createReader(new StringReader(board));
+                JsonObject json = reader.readObject();
+
+                try (Connection conn = credentials.Credentials.getConnection()) {
+                    String id = json.getString("id");
+                    String name = json.getString("name");
+
+                    PreparedStatement pstmt = conn.prepareStatement("UPDATE board SET board_name = ? WHERE board_id = ?;");
+                    pstmt.setString(1, name);
+                    pstmt.setInt(2, Integer.parseInt(id));
+
+                    pstmt.execute();
+                }
+                catch(SQLException ex) {
+                    return Response.status(500).build();
+                }
+
+                return Response.ok().build();
+            }
+        });
+        try {
+            return f.get();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(SQLException ex) {
-            return Response.status(500).build();
-        }
-        
-        return Response.ok().build();
+        return Response.status(500).build();
     }
     
     /**
@@ -245,16 +294,31 @@ public class Boards {
     @DELETE
     @Path("{id}")
     public Response deleteBoard(@PathParam("id") int id) {
-        try (Connection conn = credentials.Credentials.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM board WHERE board_id = ?");
+        Future<Response> f = executor.submit(new Callable() {
 
-            pstmt.setInt(1, id);
+            @Override
+            public Response call() throws Exception {
+                try (Connection conn = credentials.Credentials.getConnection()) {
+                    PreparedStatement pstmt = conn.prepareStatement("DELETE FROM board WHERE board_id = ?");
 
-            pstmt.executeUpdate();
+                    pstmt.setInt(1, id);
+
+                    pstmt.executeUpdate();
+                }
+                catch (SQLException ex) {
+                    return Response.status(500).build();
+                }
+                return Response.ok().build();
+            }
+        });
+        try {
+            return f.get();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (SQLException ex) {
-            return Response.status(500).build();
-        }
-        return Response.ok().build();
+        
+        return Response.status(500).build();
     }
 }
