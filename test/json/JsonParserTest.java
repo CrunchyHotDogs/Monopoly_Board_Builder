@@ -27,49 +27,58 @@ public class JsonParserTest {
     }
     
     //Creates a json object that is used for testing.
-    private JsonObject createJsonObject(int numberOfProperties, int numberOfChance, int numberOfCommunityChest, int numberOfBoardInfo) {
+    private JsonObject createJsonObject(String[][] fieldNames, int numberOfProperties, int numberOfChance, int numberOfCommunityChest, int numberOfBoardInfo) {
         JsonArrayBuilder jsonArray = Json.createArrayBuilder();
         JsonObjectBuilder singleJson = Json.createObjectBuilder();
         JsonObjectBuilder fullJson = Json.createObjectBuilder();
         
         //Loops for the required amount of properties.
         for (int i = 0; i < numberOfProperties; i++) {
-            singleJson.add("name", "testName")
-                    .add("tax", "testTax")
-                    .add("house", "testHouse")
-                    .add("cost", "testCost")
-                    .add("type", "testType");
+            singleJson.add(fieldNames[0][0], "testName")
+                    .add(fieldNames[0][1], "testTax")
+                    .add(fieldNames[0][2], "testHouse")
+                    .add(fieldNames[0][3], "testCost")
+                    .add(fieldNames[0][4], "testType");
             jsonArray.add(singleJson);
         }
         fullJson.add("property", jsonArray);
         
         //Chance cards.
         for (int i = 0; i < numberOfChance; i++) {
-            singleJson.add("name", "testName")
-                    .add("description", "testDesc")
-                    .add("type", "testType");
+            singleJson.add(fieldNames[1][0], "testName")
+                    .add(fieldNames[1][1], "testDesc")
+                    .add(fieldNames[1][2], "testType");
             jsonArray.add(singleJson);
         }
         fullJson.add("chanceCard", jsonArray);
         
         //Community chest cards.
         for (int i = 0; i < numberOfCommunityChest; i++) {
-            singleJson.add("name", "testName")
-                    .add("description", "testDesc")
-                    .add("type", "testType");
+            singleJson.add(fieldNames[2][0], "testName")
+                    .add(fieldNames[2][1], "testDesc")
+                    .add(fieldNames[2][2], "testType");
             jsonArray.add(singleJson);
         }
         fullJson.add("communityChest", jsonArray);
         
         //Board info.
         for (int i = 0; i < numberOfBoardInfo; i++) {
-            singleJson.add("name", "testName")
-                    .add("url", "testUrl");
+            singleJson.add(fieldNames[3][0], "testName")
+                    .add(fieldNames[3][1], "testUrl");
             jsonArray.add(singleJson);
         }
         fullJson.add("board", jsonArray);
         
         return fullJson.build();
+    }
+    
+    private String[][] createFieldNames() {
+        String[][] fieldNames = {   {"name", "tax", "house", "cost", "type"},
+                                    {"name", "description", "type"}, 
+                                    {"name", "description", "type"}, 
+                                    {"name", "url"}};
+        
+        return fieldNames;
     }
     
     @BeforeClass
@@ -91,7 +100,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithValidJsonReturnTrue() {
-        JsonObject json = createJsonObject(40, 16, 17, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 16, 17, 1);
         boolean expResult = true;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -99,7 +108,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonMissingPropertyReturnFalse() {
-        JsonObject json = createJsonObject(0, 16, 17, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 0, 16, 17, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -107,7 +116,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonMissingChanceReturnFalse() {
-        JsonObject json = createJsonObject(40, 0, 17, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 0, 17, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -115,7 +124,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonMissingCommunityChestReturnFalse() {
-        JsonObject json = createJsonObject(40, 16, 0, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 16, 0, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -123,7 +132,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonMissingBoardInfoReturnFalse() {
-        JsonObject json = createJsonObject(40, 16, 17, 0);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 16, 17, 0);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -131,7 +140,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonTooManyPropertyReturnFalse() {
-        JsonObject json = createJsonObject(41, 16, 17, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 41, 16, 17, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -139,7 +148,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonTooManyChanceCardsReturnFalse() {
-        JsonObject json = createJsonObject(40, 17, 17, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 17, 17, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -147,7 +156,7 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonTooManyCommunityChestCardsReturnFalse() {
-        JsonObject json = createJsonObject(40, 16, 18, 1);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 16, 18, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);
@@ -155,7 +164,150 @@ public class JsonParserTest {
     
     @Test
     public void checkWithInvalidJsonTooManyBoardInfoReturnFalse() {
-        JsonObject json = createJsonObject(40, 16, 17, 2);
+        JsonObject json = createJsonObject(createFieldNames(), 40, 16, 17, 2);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongPropertyFieldNameReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[0][0] = "notName";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongPropertyFieldTaxReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[0][1] = "notTax";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongPropertyFieldHouseReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[0][2] = "notHouse";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongPropertyFieldCostReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[0][3] = "notCost";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongPropertyFieldTypeReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[0][4] = "notType";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChanceFieldNameReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[1][0] = "notName";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChanceFieldDescReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[1][1] = "notDesc";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChanceFieldTypeReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[1][2] = "notType";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChestFieldNameReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[2][0] = "notName";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChestFieldDescReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[2][1] = "notDesc";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongChestFieldTypeReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[2][2] = "notType";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongBoardInfoFieldNameReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[3][0] = "notName";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
+        boolean expResult = false;
+        boolean result = JsonParser.validJsonCheck(json);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void checkWithInvalidJsonWrongBoardInfoFieldUrlReturnFalse() {
+        String[][] fieldNames = createFieldNames();
+        fieldNames[3][1] = "notUrl";
+        
+        JsonObject json = createJsonObject(fieldNames, 40, 16, 17, 1);
         boolean expResult = false;
         boolean result = JsonParser.validJsonCheck(json);
         assertEquals(expResult, result);

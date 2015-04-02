@@ -155,7 +155,7 @@ public class JsonParser {
             }
         }
         catch (NullPointerException ex) {
-            System.out.println("Oh no! An Error! " + ex.getMessage());
+            errorMessage += "Oh no! An Error! " + ex.getMessage();
             validFLAG = false;
         }
         
