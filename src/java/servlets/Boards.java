@@ -69,7 +69,7 @@ public class Boards {
 
                     returnString = JsonParser.getSpecificBoardJson(rsBoard, rsProp, rsChance, rsCommunity);
                 }
-                catch (SQLException ex) {
+                catch (NullPointerException | SQLException ex) {
                     return Response.status(500).build();
                 }
 
@@ -78,9 +78,7 @@ public class Boards {
         });
         try {
             return f.get();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Response.status(500).build();
@@ -103,7 +101,7 @@ public class Boards {
 
                     returnString = JsonParser.getAllBoards(pstmt.executeQuery());
                 }
-                catch(SQLException ex) {
+                catch(NullPointerException | SQLException ex) {
                     return Response.status(500).build();
                 }
                 return Response.ok(returnString).build();
@@ -111,9 +109,7 @@ public class Boards {
         });
         try {
             return f.get();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Response.status(500).build();
@@ -221,7 +217,7 @@ public class Boards {
                             }
                         }
                     }
-                    catch (SQLException | NumberFormatException ex) {
+                    catch (NullPointerException | SQLException | NumberFormatException ex) {
                         System.out.println(ex.getMessage());
                         return Response.status(500).build();
                     }
@@ -234,9 +230,7 @@ public class Boards {
         });
         try {
             return f.get();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -269,7 +263,7 @@ public class Boards {
 
                     pstmt.execute();
                 }
-                catch(SQLException ex) {
+                catch(NullPointerException | SQLException ex) {
                     return Response.status(500).build();
                 }
 
@@ -278,9 +272,7 @@ public class Boards {
         });
         try {
             return f.get();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Response.status(500).build();
@@ -305,7 +297,7 @@ public class Boards {
 
                     pstmt.executeUpdate();
                 }
-                catch (SQLException ex) {
+                catch (NullPointerException | SQLException ex) {
                     return Response.status(500).build();
                 }
                 return Response.ok().build();
@@ -313,9 +305,7 @@ public class Boards {
         });
         try {
             return f.get();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Boards.class.getName()).log(Level.SEVERE, null, ex);
         }
         
