@@ -26,46 +26,53 @@ public class JsonParser {
      * @throws SQLException 
      */
     public static String getSpecificBoardJson(ResultSet board, ResultSet property, ResultSet chance, ResultSet communty) throws SQLException {
-        JsonArrayBuilder jsonArray = Json.createArrayBuilder();
-        JsonObjectBuilder singleJson = Json.createObjectBuilder();
+        JsonArrayBuilder jArrayProp = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayChance = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayChest = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayBoard = Json.createArrayBuilder();
+        
         JsonObjectBuilder fullJson = Json.createObjectBuilder();
         
         while (property.next()) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add("name", property.getString("name"))
                     .add("tax", property.getString("tax"))
                     .add("house", property.getString("house_cost"))
                     .add("cost", property.getString("cost"))
                     .add("type", property.getString("type"));
-            jsonArray.add(singleJson);
+            jArrayProp.add(singleJson);
         }
         
-        fullJson.add("property", jsonArray);
+        fullJson.add("property", jArrayProp);
         
         while (chance.next()) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add("name", chance.getString("name"))
                     .add("description", chance.getString("description"))
                     .add("type", chance.getString("type"));
-            jsonArray.add(singleJson);
+            jArrayChance.add(singleJson);
         }
         
-        fullJson.add("chanceCard", jsonArray);
+        fullJson.add("chanceCard", jArrayChance);
         
         while (communty.next()) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add("name", communty.getString("name"))
                     .add("description", communty.getString("description"))
                     .add("type", communty.getString("type"));
-            jsonArray.add(singleJson);
+            jArrayChest.add(singleJson);
         }
         
-        fullJson.add("communityChest", jsonArray);
+        fullJson.add("communityChest", jArrayChest);
         
         while (board.next()) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add("name", board.getString("board_name"))
                     .add("url", board.getString("image_url"));
-            jsonArray.add(singleJson);
+            jArrayBoard.add(singleJson);
         }
         
-        fullJson.add("board", jsonArray);
+        fullJson.add("board", jArrayBoard);
         
         JsonObject completeJson = fullJson.build();
         return completeJson.toString();
