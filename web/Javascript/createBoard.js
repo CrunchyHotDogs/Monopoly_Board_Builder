@@ -45,8 +45,12 @@ function readImage(file) {
             
             //If there was any errors, show them to the user.
             if (errorMessage.length > 0) {
+                imageFLAG = false;
                 $('#errorMessage').html(errorMessage);
                 $('#imageUploadDialog').dialog('open');
+            }
+            else {
+                imageFLAG = true;
             }
         };
         image.onerror = function() {
