@@ -1,7 +1,9 @@
 package json;
 
+import static java.lang.System.currentTimeMillis;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -78,6 +80,12 @@ public class JsonParser {
         return completeJson.toString();
     }
     
+    /**
+     * Gets all of the board names and ids.
+     * @param info The database result set for all of the boards.
+     * @return A string containing a json object.
+     * @throws SQLException 
+     */
     public static String getAllBoards(ResultSet info) throws SQLException {
         JsonArrayBuilder jsonArray = Json.createArrayBuilder();
         JsonObjectBuilder json = Json.createObjectBuilder();
@@ -104,7 +112,7 @@ public class JsonParser {
     public static boolean validJsonCheck(JsonObject json) {
         boolean validFLAG = true;
         int Counter = 0;
-        String errorMessage = "";
+        String errorMessage = "", errorLocation = "";
         
         JsonArray properties = json.getJsonArray("property");
         JsonArray chanceCards = json.getJsonArray("chanceCard");
@@ -113,6 +121,7 @@ public class JsonParser {
         
         try {
             for (int i = 0; i < properties.size(); i++) {
+                errorLocation = "Null value in properties.";
                 JsonObject objects = properties.getJsonObject(i);
                 if (chkS(objects, "name") && chkS(objects, "tax") && chkS(objects, "house") && chkS(objects, "cost") && chkS(objects, "type")) {
                     Counter += 1;
@@ -126,6 +135,7 @@ public class JsonParser {
             
             Counter = 0;
             for (int i = 0; i < chanceCards.size(); i++) {
+                errorLocation = "Null value in chance cards.";
                 JsonObject objects = chanceCards.getJsonObject(i);
                 if (chkS(objects, "name") && chkS(objects, "description") && chkS(objects, "type")) {
                     Counter += 1;
@@ -139,6 +149,7 @@ public class JsonParser {
             
             Counter = 0;
             for (int i = 0; i < communutyCards.size(); i++) {
+                errorLocation = "Null value in community chest cards.";
                 JsonObject objects = communutyCards.getJsonObject(i);
                 if (chkS(objects, "name") && chkS(objects, "description") && chkS(objects, "type")) {
                     Counter += 1;
@@ -151,6 +162,7 @@ public class JsonParser {
             
             Counter = 0;
             for (int i = 0; i < boardInfo.size(); i++) {
+                errorLocation = "Null value in board info.";
                 JsonObject objects = boardInfo.getJsonObject(i);
                 if (chkS(objects, "name") && chkS(objects, "url")) {
                     Counter += 1;
@@ -162,10 +174,11 @@ public class JsonParser {
             }
         }
         catch (NullPointerException ex) {
-            errorMessage += "Oh no! An Error! " + ex.getMessage();
+            errorMessage += errorLocation;
             validFLAG = false;
         }
         
+        errorMessage = new Date() + " : " + errorMessage;
         System.out.println(errorMessage);
         return validFLAG;
     }
