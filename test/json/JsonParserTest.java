@@ -28,46 +28,52 @@ public class JsonParserTest {
     
     //Creates a json object that is used for testing.
     private JsonObject createJsonObject(String[][] fieldNames, int numberOfProperties, int numberOfChance, int numberOfCommunityChest, int numberOfBoardInfo) {
-        JsonArrayBuilder jsonArray = Json.createArrayBuilder();
-        JsonObjectBuilder singleJson = Json.createObjectBuilder();
+        JsonArrayBuilder jArrayProp = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayChance = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayChest = Json.createArrayBuilder();
+        JsonArrayBuilder jArrayBoard = Json.createArrayBuilder();
         JsonObjectBuilder fullJson = Json.createObjectBuilder();
         
         //Loops for the required amount of properties.
         for (int i = 0; i < numberOfProperties; i++) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add(fieldNames[0][0], "testName")
                     .add(fieldNames[0][1], "testTax")
                     .add(fieldNames[0][2], "testHouse")
                     .add(fieldNames[0][3], "testCost")
                     .add(fieldNames[0][4], "testType");
-            jsonArray.add(singleJson);
+            jArrayProp.add(singleJson);
         }
-        fullJson.add("property", jsonArray);
+        fullJson.add("property", jArrayProp);
         
         //Chance cards.
         for (int i = 0; i < numberOfChance; i++) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add(fieldNames[1][0], "testName")
                     .add(fieldNames[1][1], "testDesc")
                     .add(fieldNames[1][2], "testType");
-            jsonArray.add(singleJson);
+            jArrayChance.add(singleJson);
         }
-        fullJson.add("chanceCard", jsonArray);
+        fullJson.add("chanceCard", jArrayChance);
         
         //Community chest cards.
         for (int i = 0; i < numberOfCommunityChest; i++) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add(fieldNames[2][0], "testName")
                     .add(fieldNames[2][1], "testDesc")
                     .add(fieldNames[2][2], "testType");
-            jsonArray.add(singleJson);
+            jArrayChest.add(singleJson);
         }
-        fullJson.add("communityChest", jsonArray);
+        fullJson.add("communityChest", jArrayChest);
         
         //Board info.
         for (int i = 0; i < numberOfBoardInfo; i++) {
+            JsonObjectBuilder singleJson = Json.createObjectBuilder();
             singleJson.add(fieldNames[3][0], "testName")
                     .add(fieldNames[3][1], "testUrl");
-            jsonArray.add(singleJson);
+            jArrayBoard.add(singleJson);
         }
-        fullJson.add("board", jsonArray);
+        fullJson.add("board", jArrayBoard);
         
         return fullJson.build();
     }
