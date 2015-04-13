@@ -13,17 +13,22 @@ $(document).ready(function() {
         }
     });
     
+    //Checks to see if the database responded.
+    var successFLAG = false;
+    
     //Gets all of the boards in the database, and displays them. Adds onclick listeners for the buttons involving each board.
     var getBoards = function() {
                     $.getJSON("./boards/boardUpload", function(data) {
-                        var Counter = 0;
+                        successFLAG = true;
+                        var counter = 0;
                         $('#viewBoardsDiv').html('');
                         for (var i = 0; i < data.length; i++) {
                             insertDiv(data[i].id, data[i].name);
-                            Counter += 1;
+                            counter += 1;
                         }
                         
-                        if (Counter > 0) {
+                        
+                        if (counter > 0) {
                             $('.saveNameButton').click(function() {
                                 var jsonObject = new Object();
                                 jsonObject.id = $(this).closest("div").find(".hiddenId").val();;
@@ -80,7 +85,13 @@ $(document).ready(function() {
                         }
                     });
                 };
-            
+    
+    setTimeout(function () {
+        if (successFLAG === false) {
+            insertErrorMessage();
+        }
+    }, 3000);
+    
     getBoards();
 });
 
@@ -97,6 +108,15 @@ function insertDiv(boardId, boardName) {
                     </div>';
     
     $('#viewBoardsDiv').append(HTMLObject);
+}
+
+//Inserts a small error message if the program fails to get any boards.
+function insertErrorMessage() {
+    var HTMLObject = '';
+    
+    HTMLObject += '<p class="infoLabel marginLeft20px">Sorry, there seems to be an error with our database. Please contact IT.</p>';
+    
+    $('#viewBoardsDiv').html(HTMLObject);
 }
 
 //Shows and hides an image based on if the action was successful or not.

@@ -37,7 +37,7 @@
                 </div>
                 
                 <div id="viewBoardsDiv" class="formsDiv">
-                    
+                    <p class="infoLabel marginLeft20px">Loading Boards. Please Wait.</p>
                 </div>
             </div>
         </div>
